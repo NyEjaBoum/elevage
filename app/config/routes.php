@@ -38,7 +38,6 @@ $router->get('/list',function(){
 
 $router ->get('/admin',[ $t,'admin']);
 
-
 $router->post('/login',[ $userController, 'login' ]);
 
 $router->post('/signin',[ $userController, 'signin' ]);

@@ -211,62 +211,42 @@
                 <i class="fas fa-hotel"></i>
                 <span>Chambres</span>
             </div>
-            <div class="category">
-                <i class="fas fa-swimming-pool"></i>
-                <span>Piscines</span>
-            </div>
-            <div class="category">
-                <i class="fas fa-umbrella-beach"></i>
-                <span>Plage</span>
-            </div>
-            <div class="category">
-                <i class="fas fa-mountain"></i>
-                <span>Montagne</span>
-            </div>
-            <div class="category">
-                <i class="fas fa-campground"></i>
-                <span>Camping</span>
-            </div>
-            <div class="category">
-                <i class="fas fa-house"></i>
-                <span>Villas</span>
-            </div>
-            <div class="category">
-                <i class="fas fa-building"></i>
-                <span>Appartements</span>
-            </div>
         </div>
     </div>
 
-    <!-- Listings -->
-    <div class="listings-container">
-        <div class="listings-grid">
-            <!-- Listing Card Template -->
-            <a href="#" class="listing-card">
-                <div class="listing-image-container">
-                    <img src="placeholder-image.jpg" alt="Listing" class="listing-image">
-                    <button class="favorite-button">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="listing-info">
-                    <div class="listing-header">
-                        <div class="listing-title">Titre de l'habitation</div>
-                        <div class="listing-rating">
-                            <i class="fas fa-star"></i>
-                            4.92
+<!-- Listings -->
+<div class="listings-container">
+    <div class="listings-grid">
+        <?php if (!empty($listings)): ?>
+            <?php foreach ($listings as $listing): ?>
+                <a href="#" class="listing-card">
+                    <div class="listing-image-container">
+                        <img src="<?php echo htmlspecialchars($listing['image_url']); ?>" alt="Listing" class="listing-image">
+                        <button class="favorite-button">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="listing-info">
+                        <div class="listing-header">
+                            <div class="listing-title"><?php echo htmlspecialchars($listing['title']); ?></div>
+                            <div class="listing-rating">
+                                <i class="fas fa-star"></i>
+                                <?php echo htmlspecialchars($listing['rating']); ?>
+                            </div>
+                        </div>
+                        <div class="listing-details"><?php echo htmlspecialchars($listing['details']); ?></div>
+                        <div class="listing-details"><?php echo htmlspecialchars($listing['dates']); ?></div>
+                        <div class="listing-price">
+                            <span class="price-amount"><?php echo htmlspecialchars($listing['price']); ?> €</span> par nuit
                         </div>
                     </div>
-                    <div class="listing-details">Quartier · 2 chambres</div>
-                    <div class="listing-details">20-25 jan.</div>
-                    <div class="listing-price">
-                        <span class="price-amount">120 €</span> par nuit
-                    </div>
-                </div>
-            </a>
-
-            <!-- Additional listing cards can be added here -->
-        </div>
+                </a>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Aucun listing trouvé.</p>
+        <?php endif; ?>
+    </div>
+</div>
     </div>
 
     <script>
