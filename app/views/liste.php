@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locations Saisonnières</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         /* Reset and base styles */
         body {
@@ -179,30 +180,35 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-
-    <h1><?php echo $_SESSION['user'] ?></h1>
-
-    <nav class="nav-container">
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <i class="fab fa-airbnb"></i>
-                ImmoLoc
-            </a>
-
-            <div class="search-bar">
-                <div class="search-item">N'importe où</div>
-                <div class="search-item">Une semaine</div>
-                <div class="search-item">
-                    Ajouter des voyageurs
-                    <button class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">InfHotel</a>
             </div>
-
-            <div class="user-menu">
-                <button class="host-button"><a href="admin">Admin</a></button>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="AffichageAchat">Liste</a></li>
+                <li><a href="admin">Admin</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="admin">Admin</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
             <div class="user-menu">
                 <button class="host-button"><a href="food">Food</a></button>
@@ -247,28 +253,5 @@
     </div>
 </div>
     </div>
-
-    <script>
-        // Category selection
-        const categories = document.querySelectorAll('.category');
-        categories.forEach(category => {
-            category.addEventListener('click', () => {
-                categories.forEach(c => c.classList.remove('active'));
-                category.classList.add('active');
-            });
-        });
-
-        // Favorite button toggle
-        const favoriteButtons = document.querySelectorAll('.favorite-button');
-        favoriteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                button.classList.toggle('active');
-                const icon = button.querySelector('i');
-                icon.classList.toggle('far');
-                icon.classList.toggle('fas');
-            });
-        });
-    </script>
 </body>
 </html>

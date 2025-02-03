@@ -210,46 +210,40 @@
 
     <!-- Listings -->
     <div class="table-container">
-        <form action="update_animals.php" method="POST">
-            <div class="table-header">
-                <h2>Type animal</h2>
-            </div>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Espece</th>
-                        <th>Poids_minimal_vente</th>
-                        <th>prix de vente kg</th>
-                        <th>Poids Maximal</th>
-                        <th>Nb jour sans manger</th>
-                        <th>%_perte_de_poids</th>
-                    </tr>
-                </thead>
-                <tbody id="listeAnimaux">
-                    <?php 
-                        foreach($type as $t){ ?>
-                        <tr>
-                            <td><input type="text" name="nom" value="<?= $t['nom'] ?>"></td>
-                            <td><input type="number" name="poids_minimal_vente" value="<?= $t['poids_minimal_vente'] ?>"></td>
-                            <td><input type="number" name="prix_vente_kg" value="<?= $t['prix_vente_kg'] ?>"></td>
-                            <td><input type="number" name="poids_maximal" value="<?= $t['poids_maximal'] ?>"></td>
-                            <td><input type="number" name="jours_sans_manger" value="<?= $t['jours_sans_manger'] ?>"></td>
-                            <td><input type="number" name="pourcentage_perte_poids" value="<?= $t['pourcentage_perte_poids'] ?>"></td>
-                        </tr>
-                      <?php  }
-                    ?>
-                </tbody>
-            </table>
-
-            <div>
-                <button type="submit" class="btn btn-warning">
-                    <i class="fas fa-plus"></i> Inserer
-                </button>
-                <button type="submit" class="btn btn-warning">
-                    <i class="fas fa-cart-shopping"></i> Valider
-                </button>
-            </div>
-        </form>
+    <form action="updateType" method="GET">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Espece</th>
+                <th>Poids_minimal_vente</th>
+                <th>Prix de vente kg</th>
+                <th>Poids Maximal</th>
+                <th>Nb jour sans manger</th>
+                <th>%_perte_de_poids</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="listeAnimaux">
+            <?php foreach($type as $t){ ?>
+            <tr>
+                <input type="hidden" name="id[]" value="<?= $t['id'] ?>">
+                <td><input type="text" name="nom[]" value="<?= $t['nom'] ?>"></td>
+                <td><input type="number" step="0.01" name="poids_minimal_vente[]" value="<?= $t['poids_minimal_vente'] ?>"></td>
+                <td><input type="number" step="0.01" name="prix_vente_kg[]" value="<?= $t['prix_vente_kg'] ?>"></td>
+                <td><input type="number" step="0.01" name="poids_maximal[]" value="<?= $t['poids_maximal'] ?>"></td>
+                <td><input type="number" name="jours_sans_manger[]" value="<?= $t['jours_sans_manger'] ?>"></td>
+                <td><input type="number" step="0.01" name="pourcentage_perte_poids[]" value="<?= $t['pourcentage_perte_poids'] ?>"></td>
+            </tr>
+            <?php } ?>
+            
+        </tbody>
+        <td>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-cart-shopping"></i> Mettre à jour
+                    </button>
+                </td>
+    </table>
+</form>
     </div>
 
 </body>

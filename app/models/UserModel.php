@@ -22,7 +22,6 @@ class UserModel {
         $stmt->execute([$nom,$mdp]);
     }
 
-    
     public function getAffichageAchate(){
         $sql = "SELECT * FROM elevage_animal";
         $stmt = $this->conn->query($sql);

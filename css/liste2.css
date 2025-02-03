@@ -16,11 +16,6 @@
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
-body {
-    background-color: #fff;
-    color: var(--text-dark);
-    padding-top: 160px;
-}
 
 .nav-container {
     border-bottom: 1px solid var(--border-color);
