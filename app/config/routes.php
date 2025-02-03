@@ -46,6 +46,8 @@ $router->post('/login',[ $userController, 'login' ]);
 $router->post('/signin',[ $userController, 'signin' ]);
 
 
+$router->get('/AffichageAchat',[ $userController, 'AffichageAchate' ]);
+
 //$router->get('/users/@id:[0-9]', [ $Api_Example_Controller, 'getUser' ]);
 
 
