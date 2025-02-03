@@ -21,5 +21,13 @@ class UserModel {
         $stmt = $this->conn->prepare("INSERT INTO elevage_utilisateur (nom,mdp,capital) VALUES (?,?,0)");
         $stmt->execute([$nom,$mdp]);
     }
+
+    
+    public function getAffichageAchate(){
+        $sql = "SELECT * FROM elevage_animal";
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
 ?>

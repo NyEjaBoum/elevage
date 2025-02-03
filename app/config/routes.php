@@ -40,9 +40,6 @@ $router->get('/admin',function(){
 	Flight::render('admin');
 });
 
-
-
-
 $router->post('/login',[ $userController, 'login' ]);
 
 $router->post('/signin',[ $userController, 'signin' ]);

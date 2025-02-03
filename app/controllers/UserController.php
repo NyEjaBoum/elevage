@@ -37,5 +37,13 @@ class UserController {
             }
         }
     }
+
+    public function AffichageAchate() {
+        $Affichage = new AffichageModel(Flight::db());
+        $det = $Affichage->getAffichageAchate();
+        Flight::render('listeAchate', [
+            'AllAchat' => $det,
+        ]);
+    }
 }
 ?>
