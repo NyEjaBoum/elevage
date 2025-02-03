@@ -3,8 +3,8 @@ USE elevage;
 
 CREATE TABLE elevage_utilisateur (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    email TEXT,
     nom TEXT,
+    mdp TEXT,
     capital DECIMAL(10, 2) NOT NULL
 );
 
@@ -22,6 +22,7 @@ CREATE TABLE elevage_animal (
     id INT PRIMARY KEY AUTO_INCREMENT,
     image VARCHAR(100),
     nom VARCHAR(50),
+    image text,
     poids_actuel DECIMAL(10, 2) NOT NULL,
     date_achat DATE NOT NULL,
     est_vivant BOOLEAN DEFAULT TRUE,

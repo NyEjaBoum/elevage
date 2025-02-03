@@ -150,17 +150,15 @@
             <form action="signin" method="POST">
                 <h1>Créer un compte</h1>
                 <input type="text" placeholder="Nom" name="nom" required>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="text" placeholder="Téléphone" name="tel"  required>
-                <input type="password" placeholder="Mot de passe" name="mdp" required>
+                <input type="text" placeholder="mot de passe" name="mdp" required>
                 <button type="submit">S'inscrire</button>
             </form>
         </div>
         <div class="form-container login-container">
             <form action="login" method="POST">
                 <h1>Connexion</h1>
-                <input type="email" placeholder="Email" name="email"  required>
-                <input type="password" placeholder="Mot de passe" name="mdp" required>
+                <input type="text" placeholder="nom" name="nom"  required>
+                <input type="text" placeholder="mot de passe" name="mdp" required>
                 <button type="submit">Se connecter</button>
             </form>
         </div>

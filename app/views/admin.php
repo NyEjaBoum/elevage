@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locations Saisonnières</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/liste.css">
+
     <style>
         /* Reset and base styles */
         body {
@@ -180,9 +182,6 @@
 </head>
 <body>
     <!-- Navigation -->
-
-    <h1><?php echo $_SESSION['user'] ?></h1>
-
     <nav class="nav-container">
         <div class="nav-content">
             <a href="#" class="logo">
@@ -208,64 +207,50 @@
     </nav>
 
     <!-- Categories -->
-    <div class="categories-container">
-        <div class="categories">
-            <div class="category active">
-                <i class="fas fa-hotel"></i>
-                <span>Chambres</span>
+
+    <!-- Listings -->
+    <div class="table-container">
+        <form action="update_animals.php" method="POST">
+            <div class="table-header">
+                <h2>Type animal</h2>
             </div>
-        </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Espece</th>
+                        <th>Poids_minimal_vente</th>
+                        <th>prix de vente kg</th>
+                        <th>Poids Maximal</th>
+                        <th>Nb jour sans manger</th>
+                        <th>%_perte_de_poids</th>
+                    </tr>
+                </thead>
+                <tbody id="listeAnimaux">
+                    <?php 
+                        foreach($type as $t){ ?>
+                        <tr>
+                            <td><input type="text" name="nom" value="<?= $t['nom'] ?>"></td>
+                            <td><input type="number" name="poids_minimal_vente" value="<?= $t['poids_minimal_vente'] ?>"></td>
+                            <td><input type="number" name="prix_vente_kg" value="<?= $t['prix_vente_kg'] ?>"></td>
+                            <td><input type="number" name="poids_maximal" value="<?= $t['poids_maximal'] ?>"></td>
+                            <td><input type="number" name="jours_sans_manger" value="<?= $t['jours_sans_manger'] ?>"></td>
+                            <td><input type="number" name="pourcentage_perte_poids" value="<?= $t['pourcentage_perte_poids'] ?>"></td>
+                        </tr>
+                      <?php  }
+                    ?>
+                </tbody>
+            </table>
+
+            <div>
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-plus"></i> Inserer
+                </button>
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-cart-shopping"></i> Valider
+                </button>
+            </div>
+        </form>
     </div>
 
-<!-- Listings -->
-<div class="listings-container">
-    <div class="listings-grid">
-        <?php if (!empty($listings)): ?>
-            <?php foreach ($listings as $listing): ?>
-                <a href="#" class="listing-card">
-                    <div class="listing-image-container">
-                        <img src="<?php echo ($listing['image']); ?>" alt="Listing" class="listing-image">
-                        <button class="favorite-button">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="listing-info">
-                        <div class="listing-header">
-                            <div class="listing-title"><?php echo ($listing['nom']); ?></div>
-                        </div>
-                        <div class="listing-details"><?php echo ($listing['poids_actuel']); ?></div>
-                        <div class="listing-details"><?php echo ($listing['date_achat']); ?></div>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Aucun listing trouvé.</p>
-        <?php endif; ?>
-    </div>
-</div>
-    </div>
-
-    <script>
-        // Category selection
-        const categories = document.querySelectorAll('.category');
-        categories.forEach(category => {
-            category.addEventListener('click', () => {
-                categories.forEach(c => c.classList.remove('active'));
-                category.classList.add('active');
-            });
-        });
-
-        // Favorite button toggle
-        const favoriteButtons = document.querySelectorAll('.favorite-button');
-        favoriteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                button.classList.toggle('active');
-                const icon = button.querySelector('i');
-                icon.classList.toggle('far');
-                icon.classList.toggle('fas');
-            });
-        });
-    </script>
 </body>
 </html>
