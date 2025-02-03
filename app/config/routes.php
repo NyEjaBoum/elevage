@@ -25,14 +25,17 @@ $router->get('/index',function(){
 	Flight::render('index');
 });
 
-
 $router->get('/template1',function(){
 	Flight::render('template1');
 });
 
 $router->get('/template2',function(){
 	Flight::render('template2');
-});
+}); 
+
+$router ->get('/updateType',[ $t,'updateType']);
+
+
 
 $router ->get('/admin',[ $t,'getAllType']);
 
