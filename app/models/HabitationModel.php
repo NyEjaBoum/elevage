@@ -28,7 +28,13 @@ class HabitationModel {
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll();
     }
-
+    
+    //fonction Pour les listeAcheter
+    public function getlistAcheter(){
+        $sql = "SELECT * FROM elevage_animal";
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetchAll();
+    }
 
 
     public function uploadImg($files){

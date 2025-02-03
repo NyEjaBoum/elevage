@@ -20,6 +20,7 @@ CREATE TABLE elevage_typeAnimal (
 
 CREATE TABLE elevage_animal (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    image VARCHAR(100),
     nom VARCHAR(50),
     poids_actuel DECIMAL(10, 2) NOT NULL,
     date_achat DATE NOT NULL,

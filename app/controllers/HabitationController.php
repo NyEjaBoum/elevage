@@ -18,6 +18,13 @@ class HabitationController {
         Flight::render('liste', ['habitations' => $habitations]);
     }
 
+    //Liste des animaux achetere
+    public function listAcheter() {
+        $habitationModel = new HabitationModel(Flight::db());
+        $listAcheter = $habitationModel->getlistAcheter();
+        Flight::render('listeAheter', ['listAcheter' => $listAcheter]);
+    }
+
     public function list2() {
         $habitationModel = new HabitationModel(Flight::db());
         $habitations = $habitationModel->getAll();
