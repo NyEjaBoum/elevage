@@ -17,5 +17,9 @@ class typeAnimalController {
         Flight::render('admin',['type' => $type]);
     }
 
+    public function createType(){
+        
+    }
+
 }
 ?>

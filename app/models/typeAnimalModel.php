@@ -17,5 +17,7 @@ class typeAnimalModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function 
+
 }
 ?>
