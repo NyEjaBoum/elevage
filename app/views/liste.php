@@ -199,7 +199,7 @@
             </div>
 
             <div class="user-menu">
-                <button class="host-button">Admin</button>
+                <button class="host-button"><a href="admin">Admin</a></button>
             </div>
         </div>
     </nav>
