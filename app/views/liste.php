@@ -180,6 +180,9 @@
 </head>
 <body>
     <!-- Navigation -->
+
+    <h1><?php echo $_SESSION['user'] ?></h1>
+
     <nav class="nav-container">
         <div class="nav-content">
             <a href="#" class="logo">
@@ -221,24 +224,17 @@
             <?php foreach ($listings as $listing): ?>
                 <a href="#" class="listing-card">
                     <div class="listing-image-container">
-                        <img src="<?php echo htmlspecialchars($listing['image_url']); ?>" alt="Listing" class="listing-image">
+                        <img src="<?php echo ($listing['image']); ?>" alt="Listing" class="listing-image">
                         <button class="favorite-button">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
                     <div class="listing-info">
                         <div class="listing-header">
-                            <div class="listing-title"><?php echo htmlspecialchars($listing['title']); ?></div>
-                            <div class="listing-rating">
-                                <i class="fas fa-star"></i>
-                                <?php echo htmlspecialchars($listing['rating']); ?>
-                            </div>
+                            <div class="listing-title"><?php echo ($listing['nom']); ?></div>
                         </div>
-                        <div class="listing-details"><?php echo htmlspecialchars($listing['details']); ?></div>
-                        <div class="listing-details"><?php echo htmlspecialchars($listing['dates']); ?></div>
-                        <div class="listing-price">
-                            <span class="price-amount"><?php echo htmlspecialchars($listing['price']); ?> €</span> par nuit
-                        </div>
+                        <div class="listing-details"><?php echo ($listing['poids_actuel']); ?></div>
+                        <div class="listing-details"><?php echo ($listing['date_achat']); ?></div>
                     </div>
                 </a>
             <?php endforeach; ?>

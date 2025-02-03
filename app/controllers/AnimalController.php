@@ -15,8 +15,8 @@ class AnimalController {
 
     public function listAnimaux() {
         $e = new ElevageAnimalModel(Flight::db());
-        $animaux = $e->getAnimauxByUtilisateur($_SESSION['user']);
-        Flight::render('liste',['listings' => $animaux]);
+        $listings = $e->getAnimauxByUtilisateur($_SESSION['user']);
+        Flight::render('liste',['listings' => $listings]);
     }
 }
 
