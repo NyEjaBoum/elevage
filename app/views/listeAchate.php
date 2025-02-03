@@ -7,9 +7,31 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/liste2.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .buy-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #218838;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -23,7 +45,7 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="AffichageAchat">Liste des achat</a></li>
+                <li><a href="list">Liste</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -57,11 +79,12 @@
                     <div class="listing-header">
                         <div class="listing-title"> <?php echo $test['nom']; ?></div>
                     </div>
+
                     <div class="listing-details"> <?php echo $test['poids_actuel']; ?></div>
                     <div class="listing-details">20-25 jan.</div>
                     <div class="listing-price">
                         <span class="price-amount">Date d'achate: <?php echo $test['date_achat']; ?></span>
-
+                        <a href="acheter.php?id=<?php echo $test['id']; ?>" class="buy-button">Acheter</a>
                     </div>
                 </div>
             </a>

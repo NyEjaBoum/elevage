@@ -22,7 +22,19 @@ CREATE TABLE elevage_animal (
     id INT PRIMARY KEY AUTO_INCREMENT,
     image VARCHAR(100),
     nom VARCHAR(50),
-    image text,
+    poids_actuel DECIMAL(10, 2) NOT NULL,
+    date_achat DATE NOT NULL,
+    est_vivant BOOLEAN DEFAULT TRUE,
+    utilisateur_id INT,
+    type_animal_id INT,
+    FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
+    FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
+);
+
+CREATE TABLE elevage_animal_for_Achat (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    image VARCHAR(100),
+    nom VARCHAR(50),
     poids_actuel DECIMAL(10, 2) NOT NULL,
     date_achat DATE NOT NULL,
     est_vivant BOOLEAN DEFAULT TRUE,
