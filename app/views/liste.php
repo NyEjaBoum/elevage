@@ -301,7 +301,6 @@
                     <th>Nom</th>
                     <th>Poids Actuel</th>
                     <th>Date d'Achat</th>
-                    <th>Quantité</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -313,9 +312,6 @@
                             <td><?php echo htmlspecialchars($listing['nom']); ?></td>
                             <td><?php echo htmlspecialchars($listing['poids_actuel']); ?></td>
                             <td><?php echo htmlspecialchars($listing['date_achat']); ?></td>
-                            <td>
-                                <input type="number" name="quantite[]" value="<?= $listing['quantite'] ?>">
-                            </td>
                             <td>
                                 <button class="action-button" type="submit">Vendre</button>
                             </td>
