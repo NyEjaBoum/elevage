@@ -21,6 +21,7 @@ CREATE TABLE elevage_typeAnimal (
 CREATE TABLE elevage_animal (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50),
+    image text,
     poids_actuel DECIMAL(10, 2) NOT NULL,
     date_achat DATE NOT NULL,
     est_vivant BOOLEAN DEFAULT TRUE,

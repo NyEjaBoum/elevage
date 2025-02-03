@@ -1,4 +1,19 @@
-INSERT INTO elevage_animal(image, nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id) VALUES
+-- Insérer des utilisateurs dans la table elevage_utilisateur
+INSERT INTO elevage_utilisateur (nom, mdp, capital) VALUES
+('Utilisateur1', 'motdepasse1', 1000.00),
+('Utilisateur2', 'motdepasse2', 1500.00),
+('Utilisateur3', 'motdepasse3', 2000.00);
+
+INSERT INTO elevage_typeAnimal (nom, poids_minimal_vente, poids_maximal, prix_vente_kg, jours_sans_manger, pourcentage_perte_poids) VALUES
+('Vache', 40.0, 60.0, 5.00, 7, 2.5),
+('Cochon', 20.0, 30.0, 3.50, 5, 3.0),
+('Lapin', 1.5, 2.5, 10.00, 3, 1.5),
+('Mouton', 15.0, 25.0, 4.00, 6, 2.0),
+('Cheval', 30.0, 50.0, 8.00, 10, 1.0),
+('Poule', 1.0, 2.0, 12.00, 2, 1.0);
+
+-- Insérer des animaux dans la table elevage_animal
+INSERT INTO elevage_animal (image, nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id) VALUES
 ('assets/images/vache1.jpg', 'Vache Tachetée', 45.5, '2025-01-01', TRUE, 1, 1),
 ('assets/images/vache2.jpg', 'Vache Brune', 47.0, '2025-01-02', TRUE, 1, 1),
 ('assets/images/cochon1.jpg', 'Cochon Gris', 22.1, '2025-01-03', TRUE, 1, 2),
@@ -12,20 +27,7 @@ INSERT INTO elevage_animal(image, nom, poids_actuel, date_achat, est_vivant, uti
 ('assets/images/poule1.jpg', 'Poule Rousse', 2.3, '2025-01-11', TRUE, 1, 6),
 ('assets/images/poule2.jpg', 'Poule Blanche', 2.8, '2025-01-12', TRUE, 1, 6);
 
-INSERT INTO elevage_typeAnimal (nom, poids_minimal_vente, poids_maximal, prix_vente_kg, jours_sans_manger, pourcentage_perte_poids) VALUES
-('Poulet', 1.5, 3.0, 5.00, 2, 10.00),
-('Bœuf', 200.0, 600.0, 4.00, 5, 5.00),
-('Mouton', 30.0, 80.0, 6.00, 3, 7.50);
-
-
-INSERT INTO elevage_animal (nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id) VALUES
-('Coco', 2.0, '2025-01-10', TRUE, 1, 1),
-('Brutus', 250.0, '2025-01-05', TRUE, 2, 2),
-('Dolly', 40.0, '2025-01-12', TRUE, 3, 3),
-('Rocky', 500.0, '2025-01-08', TRUE, 1, 2),
-('Plume', 1.8, '2025-01-15', TRUE, 2, 1);
-
-
+-- Insérer des transactions dans la table elevage_transactionAnimal
 INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) VALUES
 ('achat', 10.00, '2025-01-10', 1, 1, 1),
 ('achat', 1000.00, '2025-01-05', 2, 2, 1),
