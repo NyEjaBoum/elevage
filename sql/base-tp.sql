@@ -43,3 +43,15 @@ CREATE TABLE elevage_transactionAnimal (
     FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
     FOREIGN KEY (animal_id) REFERENCES elevage_animal(id)
 );
+
+CREATE TABLE elevage_nourriture (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(100) NOT NULL, -- Nom de la nourriture (ex: "Foin", "Granulés pour lapins")
+    type_animal_id INT NOT NULL, -- Type d'animal associé à cette nourriture
+    pourcentage_gain_poids DECIMAL(5, 2) NOT NULL, -- % de gain de poids par jour
+    prix_kg DECIMAL(10, 2) NOT NULL, -- Prix au kg de la nourriture
+    stock DECIMAL(10, 2) NOT NULL DEFAULT 0, -- Stock disponible en kg
+    utilisateur_id INT NOT NULL, -- Utilisateur propriétaire de la nourriture
+    FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id),
+    FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id)
+);

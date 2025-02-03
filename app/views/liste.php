@@ -204,6 +204,9 @@
             <div class="user-menu">
                 <button class="host-button"><a href="admin">Admin</a></button>
             </div>
+            <div class="user-menu">
+                <button class="host-button"><a href="food">Food</a></button>
+            </div>
         </div>
     </nav>
 
@@ -212,7 +215,7 @@
         <div class="categories">
             <div class="category active">
                 <i class="fas fa-hotel"></i>
-                <span>Chambres</span>
+                <span>Chambres </span>
             </div>
         </div>
     </div>

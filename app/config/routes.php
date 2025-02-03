@@ -3,6 +3,8 @@
 use app\controllers\userController;
 use app\controllers\typeAnimalController;
 use app\controllers\AnimalController;
+use app\controllers\nourritureController;
+
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -16,6 +18,8 @@ use flight\net\Router;
 $userController = new userController();
 $t = new typeAnimalController();
 $l = new AnimalController();
+$f = new nourritureController();
+
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -33,6 +37,8 @@ $router->get('/template1',function(){
 $router->get('/template2',function(){
 	Flight::render('template2');
 });
+
+$router->get('/food', [$f, 'showFoodPurchaseForm']);
 
 $router ->get('/admin',[ $t,'getAllType']);
 
