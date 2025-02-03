@@ -3,255 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locations Saisonnières</title>
+    <title>Tableau de Bord Élevage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-        /* Reset and base styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+    <!-- Ajoutez le CSS ci-dessus ici -->
+     <style>
+            body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    min-height: 100vh;
+}
 
-        /* Navigation Styles */
-        .nav-container {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* Dashboard Header */
+.dashboard {
+    background-color: #ffffff;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.dashboard-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #FF5A5F;
-            font-weight: bold;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a56db;
+    text-decoration: none;
+}
 
-        .logo i {
-            margin-right: 10px;
-            font-size: 24px;
-        }
+.logo i {
+    color: #2563eb;
+    font-size: 1.75rem;
+}
 
-        /* Search Bar Styles */
-        .search-bar {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            padding: 10px;
-        }
+.user-menu {
+    display: flex;
+    gap: 1rem;
+}
 
-        .search-item {
-            margin: 0 10px;
-            color: #484848;
-        }
+.dashboard-button {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .search-button {
-            background-color: #FF5A5F;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-        }
+.dashboard-button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
 
-        /* Categories Styles */
-        .categories-container {
-            background-color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+.dashboard-button i {
+    font-size: 1rem;
+}
 
-        .categories {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.dashboard-button a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        .category {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            color: #717171;
-            padding: 10px;
-            transition: color 0.3s;
-        }
+/* Stats Cards */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-        .category:hover, .category.active {
-            color: #FF5A5F;
-        }
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
 
-        .category i {
-            margin-bottom: 5px;
-            font-size: 20px;
-        }
+.stat-card:hover {
+    transform: translateY(-2px);
+}
 
-        /* Listings Styles */
-        .listings-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
+.stat-title {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
 
-        .listings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
 
-        .listing-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-decoration: none;
-            color: #484848;
-            transition: transform 0.3s;
-        }
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: #16a34a;
+}
 
-        .listing-card:hover {
-            transform: scale(1.03);
-        }
+/* Table Container */
+.table-container {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 0 2rem 2rem;
+    overflow: hidden;
+    max-width: 1400px;
+    margin: 2rem auto;
+}
 
-        .listing-image-container {
-            position: relative;
-        }
+.table-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
 
-        .listing-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
+.table-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
 
-        .favorite-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        .listing-info {
-            padding: 15px;
-        }
+thead th {
+    background-color: #f9fafb;
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
-        .listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+}
 
-        .listing-title {
-            font-weight: bold;
-        }
+tbody tr:hover {
+    background-color: #f9fafb;
+}
 
-        .listing-rating {
-            color: #FF5A5F;
-        }
+tbody td {
+    padding: 1rem 1.5rem;
+    color: #374151;
+    font-size: 0.875rem;
+}
 
-        .listing-details {
-            color: #717171;
-            margin-bottom: 5px;
-        }
+.action-button {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-        .listing-price {
-            font-weight: bold;
-        }
-    </style>
+.action-button:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.action-button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-listings {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 1rem;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .table-container {
+        margin: 1rem;
+        overflow-x: auto;
+    }
+
+    .user-menu {
+        gap: 0.5rem;
+    }
+
+    .dashboard-button {
+        padding: 0.5rem 1rem;
+    }
+}
+
+     </style>
 </head>
 <body>
-        <nav class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">InfHotel</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="AffichageAchat">Liste</a></li>
-                <li><a href="admin">Admin</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="admin">Admin</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <div class="dashboard-content">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                Élevage <?php echo htmlspecialchars($_SESSION['user']); ?>
             </div>
             <div class="user-menu">
-                <button class="host-button"><a href="food">Food</a></button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Categories -->
-    <div class="categories-container">
-        <div class="categories">
-            <div class="category active">
-                <i class="fas fa-hotel"></i>
-                <span>Chambres </span>
+                <button class="dashboard-button">
+                    <i class="fas fa-user-shield"></i>
+                    <a href="admin">Admin</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="food">Acheter Nourriture</a>
+                </button>
             </div>
         </div>
     </div>
 
-<!-- Listings -->
-<div class="listings-container">
-    <div class="listings-grid">
-        <?php if (!empty($listings)): ?>
-            <?php foreach ($listings as $listing): ?>
-                <a href="#" class="listing-card">
-                    <div class="listing-image-container">
-                        <img src="<?php echo ($listing['image']); ?>" alt="Listing" class="listing-image">
-                        <button class="favorite-button">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="listing-info">
-                        <div class="listing-header">
-                            <div class="listing-title"><?php echo ($listing['nom']); ?></div>
-                        </div>
-                        <div class="listing-details"><?php echo ($listing['poids_actuel']); ?></div>
-                        <div class="listing-details"><?php echo ($listing['date_achat']); ?></div>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Aucun listing trouvé.</p>
-        <?php endif; ?>
+    <!-- Stats Cards -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-title">Total Animaux</div>
+            <div class="stat-value">12</div>
+            <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                +2.5% ce mois
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Poids Moyen</div>
+            <div class="stat-value">245 kg</div>
+            <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                +4.7% ce mois
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Âge Moyen</div>
+            <div class="stat-value">14 mois</div>
+            <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                +1.2% ce mois
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <h2 class="table-title">Liste des Animaux</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Poids Actuel</th>
+                    <th>Date d'Achat</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($listings)): ?>
+                    <?php foreach ($listings as $listing): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($listing['nom']); ?></td>
+                            <td><?php echo htmlspecialchars($listing['poids_actuel']); ?></td>
+                            <td><?php echo htmlspecialchars($listing['date_achat']); ?></td>
+                            <td>
+                                <button class="action-button">
+                                    <a href="vendre">Vendre</a>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" class="no-listings">Aucun animal disponible</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
