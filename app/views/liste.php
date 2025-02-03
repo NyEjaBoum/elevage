@@ -22,6 +22,14 @@
                     <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : 'Utilisateur'; ?>
                 </a>
             </div>
+            <div class="nav-links">
+                <a href="animaux.php" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nouvel Animal
+                </a>
+                <a href="#" class="user-info">
+                    <?php echo isset($_SESSION['user']) ? $_SESSION['user'] : 'Utilisateur'; ?>
+                </a>
+            </div>
         </div>
     </nav>
 
