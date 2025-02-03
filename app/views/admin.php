@@ -210,7 +210,7 @@
 
     <!-- Listings -->
     <div class="table-container">
-        <form action="update_animals.php" method="POST">
+        <form action="updateType" method="GET">
             <div class="table-header">
                 <h2>Type animal</h2>
             </div>
@@ -229,6 +229,7 @@
                     <?php 
                         foreach($type as $t){ ?>
                         <tr>
+                            <td><input type="hidden" name="id" value="<?= $t['id'] ?>"></td>
                             <td><input type="text" name="nom" value="<?= $t['nom'] ?>"></td>
                             <td><input type="number" name="poids_minimal_vente" value="<?= $t['poids_minimal_vente'] ?>"></td>
                             <td><input type="number" name="prix_vente_kg" value="<?= $t['prix_vente_kg'] ?>"></td>
@@ -243,7 +244,8 @@
 
             <div>
                 <button type="submit" class="btn btn-warning">
-                    <i class="fas fa-plus"></i> Inserer
+                    <i class="fas fa-plus"></i> 
+                    Inserer
                 </button>
                 <button type="submit" class="btn btn-warning">
                     <i class="fas fa-cart-shopping"></i> Valider

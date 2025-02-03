@@ -25,7 +25,7 @@ class typeAnimalModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateType($id, $nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage) {
+   public function updateType($id, $nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage) {
         $sql = "UPDATE elevage_typeAnimal 
                 SET nom = ?, 
                     poids_minimal_vente = ?, 
@@ -38,6 +38,46 @@ class typeAnimalModel {
         $stmt->execute([$nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage, $id]);
         return $stmt->rowCount();
     }
+
+    /*public function updateType($id, $nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage) {
+        $columns = [];
+        $values = [];
+    
+        if ($nom !== null) {
+            $columns[] = 'nom = ?';
+            $values[] = $nom;
+        }
+        if ($poidsMin !== null) {
+            $columns[] = 'poids_minimal_vente = ?';
+            $values[] = $poidsMin;
+        }
+        if ($poidsMax !== null) {
+            $columns[] = 'poids_maximal = ?';
+            $values[] = $poidsMax;
+        }
+        if ($prixVenteKg !== null) {
+            $columns[] = 'prix_vente_kg = ?';
+            $values[] = $prixVenteKg;
+        }
+        if ($jour !== null) {
+            $columns[] = 'jours_sans_manger = ?';
+            $values[] = $jour;
+        }
+        if ($pourcentage !== null) {
+            $columns[] = 'pourcentage_perte_poids = ?';
+            $values[] = $pourcentage;
+        }
+    
+        if (empty($columns)) {
+            return false;
+        }
+        $sql = "UPDATE elevage_typeAnimal SET " . implode(', ', $columns) . " WHERE id = ?";
+        $values[] = $id; 
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($values);
+        return $stmt->rowCount();
+    }*/
 
 }
 ?>
