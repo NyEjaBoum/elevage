@@ -84,7 +84,7 @@
                     <div class="listing-details">20-25 jan.</div>
                     <div class="listing-price">
                         <span class="price-amount">Date d'achate: <?php echo $test['date_achat']; ?></span>
-                        <a href="acheter.php?id=<?php echo $test['id']; ?>" class="buy-button">Acheter</a>
+                        <a href="insertAchat?id=<?php echo $test['id']; ?>" class="buy-button">Acheter</a>
                     </div>
                 </div>
             </a>

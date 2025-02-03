@@ -79,5 +79,7 @@ class typeAnimalModel {
         return $stmt->rowCount();
     }*/
 
+    
+
 }
 ?>
