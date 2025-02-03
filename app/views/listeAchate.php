@@ -57,10 +57,10 @@
                     <div class="listing-header">
                         <div class="listing-title"> <?php echo $test['nom']; ?></div>
                     </div>
-                    <div class="listing-details"> <?php echo $test['lieux']; ?></div>
+                    <div class="listing-details"> <?php echo $test['poids_actuel']; ?></div>
                     <div class="listing-details">20-25 jan.</div>
                     <div class="listing-price">
-                        <span class="price-amount">prix: <?php echo $test['prix']; ?></span>
+                        <span class="price-amount">Date d'achate: <?php echo $test['date_achat']; ?></span>
 
                     </div>
                 </div>
