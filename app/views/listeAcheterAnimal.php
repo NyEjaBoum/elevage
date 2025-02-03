@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Élevage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Ajoutez le CSS ci-dessus ici -->
-    <style>
-        body {
+     <style>
+                    body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
@@ -233,16 +232,16 @@
                 padding: 0.5rem 1rem;
             }
         }
-    </style>
-</head>
 
+     </style>
+</head>
 <body>
     <!-- Dashboard -->
     <div class="dashboard">
         <div class="dashboard-content">
             <div class="logo">
                 <i class="fas fa-paw"></i>
-                Élevage <?php echo htmlspecialchars($_SESSION['user']); ?>
+                Élevage <?php echo ($_SESSION['user']); ?>
             </div>
             <div class="user-menu">
                 <button class="dashboard-button">
@@ -252,10 +251,6 @@
                 <button class="dashboard-button">
                     <i class="fas fa-shopping-cart"></i>
                     <a href="food">Acheter Nourriture</a>
-                </button>
-                <button class="dashboard-button">
-                    <i class="fas fa-shopping-cart"></i>
-                    <a href="listeAnimal">Acheter Animal</a>
                 </button>
             </div>
         </div>
@@ -307,9 +302,9 @@
                 <?php if (!empty($listings)): ?>
                     <?php foreach ($listings as $listing): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($listing['nom']); ?></td>
-                            <td><?php echo htmlspecialchars($listing['poids_actuel']); ?></td>
-                            <td><?php echo htmlspecialchars($listing['date_achat']); ?></td>
+                            <td><?php echo ($listing['nom']); ?></td>
+                            <td><?php echo ($listing['poids_actuel']); ?></td>
+                            <td><?php echo ($listing['date_achat']); ?></td>
                             <td>
                                 <button class="action-button">
                                     <a href="vendre">Vendre</a>
@@ -326,5 +321,4 @@
         </table>
     </div>
 </body>
-
 </html>
