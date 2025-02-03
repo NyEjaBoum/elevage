@@ -209,7 +209,7 @@
         <div class="categories">
             <div class="category active">
                 <i class="fas fa-hotel"></i>
-                <span>Chambres</span>
+                <span>Insertion type animal</span>
             </div>
         </div>
     </div>
