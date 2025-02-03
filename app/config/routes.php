@@ -33,11 +33,18 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 });
 
-$router->get('/list',[ $hab, 'list' ]);
+$router->get('/list',function(){
+	Flight::render('liste');
+});
+
+$router->get('/admin',function(){
+	Flight::render('admin');
+});
+
+//$router->get('/list',[ $hab, 'list' ]);
 
 //$router->get('/details',[ $hab, 'getById' ]);
 
-$router->get('/admin',[ $hab, 'list2' ]);
 
 $router->get('/deleteHabit',[ $hab, 'delete' ]);
 

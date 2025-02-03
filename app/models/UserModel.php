@@ -11,15 +11,15 @@ class UserModel {
         $this->conn = $db;
     }
 
-    public function login($email, $mdp) {
-        $stmt = $this->conn->prepare("SELECT * FROM immo_utilisateur WHERE email = ? AND mdp = ?");
-        $stmt->execute([$email, $mdp]);
+    public function login($nom,$mdp) {
+        $stmt = $this->conn->prepare("SELECT * FROM elevage_utilisateur WHERE nom = ? AND mdp = ?");
+        $stmt->execute([$nom,$mdp]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function signin($email,$nom,$mdp,$tel){
-        $stmt = $this->conn->prepare("INSERT INTO immo_utilisateur (nom,email,mdp,numero) VALUES (?,?,?,?)");
-        $stmt->execute([$nom,$email,$mdp,$tel]);
+    public function signin($nom,$mdp){
+        $stmt = $this->conn->prepare("INSERT INTO elevage_utilisateur (nom,mdp,capital) VALUES (?,?,0)");
+        $stmt->execute([$nom,$mdp]);
     }
 }
 ?>
