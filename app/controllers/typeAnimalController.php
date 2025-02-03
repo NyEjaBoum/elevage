@@ -29,6 +29,11 @@ class typeAnimalController {
         $update = $t->updateType($id,$nom,$poidsMin,$poidsMax,$prixVenteKg,$jour,$pourcentage);
         Flight::redirect('admin');
     }
+    
+    
+
+   
+
 
 }
 ?>
