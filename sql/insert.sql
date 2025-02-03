@@ -13,19 +13,19 @@ INSERT INTO elevage_typeAnimal (nom, poids_minimal_vente, poids_maximal, prix_ve
 ('Poule', 1.0, 2.0, 12.00, 2, 1.0);
 
 -- Insérer des animaux dans la table elevage_animal
-INSERT INTO elevage_animal (image, nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id) VALUES
-('assets/images/vache1.jpg', 'Vache Tachetée', 45.5, '2025-01-01', TRUE, 1, 1),
-('assets/images/vache2.jpg', 'Vache Brune', 47.0, '2025-01-02', TRUE, 1, 1),
-('assets/images/cochon1.jpg', 'Cochon Gris', 22.1, '2025-01-03', TRUE, 1, 2),
-('assets/images/cochon2.jpg', 'Cochon Rose', 24.5, '2025-01-04', TRUE, 1, 2),
-('assets/images/lapin1.jpg', 'Lapin Beige', 1.8, '2025-01-05', TRUE, 1, 3),
-('assets/images/lapin2.jpg', 'Lapin Blanc', 2.0, '2025-01-06', TRUE, 1, 3),
-('assets/images/mouton1.jpg', 'Mouton Blanc', 20.5, '2025-01-07', TRUE, 1, 4),
-('assets/images/mouton2.jpg', 'Mouton Marron', 18.3, '2025-01-08', TRUE, 1, 4),
-('assets/images/cheval1.jpg', 'Cheval Noir', 35.2, '2025-01-09', TRUE, 1, 5),
-('assets/images/cheval2.jpg', 'Cheval Blanc', 37.8, '2025-01-10', TRUE, 1, 5),
-('assets/images/poule1.jpg', 'Poule Rousse', 2.3, '2025-01-11', TRUE, 1, 6),
-('assets/images/poule2.jpg', 'Poule Blanche', 2.8, '2025-01-12', TRUE, 1, 6);
+INSERT INTO elevage_animal (nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id,quantite) VALUES
+('Vache Tachetée', 45.5, '2025-01-01', TRUE, 1, 1,1),
+('Vache Brune', 47.0, '2025-01-02', TRUE, 1, 1,5),
+('Cochon Gris', 22.1, '2025-01-03', TRUE, 1, 2,3),
+('Cochon Rose', 24.5, '2025-01-04', TRUE, 1, 2,4),
+('Lapin Beige', 1.8, '2025-01-05', TRUE, 1, 3,1),
+('Lapin Blanc', 2.0, '2025-01-06', TRUE, 1, 3,1),
+('Mouton Blanc', 20.5, '2025-01-07', TRUE, 1, 4,2),
+('Mouton Marron', 18.3, '2025-01-08', TRUE, 1, 4,4),
+('Cheval Noir', 35.2, '2025-01-09', TRUE, 1, 5,1),
+('Cheval Blanc', 37.8, '2025-01-10', TRUE, 1, 5,1),
+('Poule Rousse', 2.3, '2025-01-11', TRUE, 1, 6,2),
+('Poule Blanche', 2.8, '2025-01-12', TRUE, 1, 6,3);
 
 -- Insérer des transactions dans la table elevage_transactionAnimal
 INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) VALUES
@@ -35,3 +35,33 @@ INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transacti
 ('achat', 2000.00, '2025-01-08', 1, 4, 1),
 ('vente', 9.00, '2025-01-20', 1, 1, 1),
 ('achat_nourriture', 50.00, '2025-01-18', 2, NULL, 10.0);
+
+-- Nourriture pour les vaches (type_animal_id = 1)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Foin pour vaches', 1, 1.5, 0.50, 100.0, 1), -- Foin pour vaches (utilisateur_id = 1)
+('Aliment concentré pour vaches', 1, 2.0, 1.20, 50.0, 2); -- Aliment concentré pour vaches (utilisateur_id = 2)
+
+-- Nourriture pour les cochons (type_animal_id = 2)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Mélange pour cochons', 2, 1.8, 0.80, 80.0, 1), -- Mélange pour cochons (utilisateur_id = 1)
+('Granulés pour cochons', 2, 2.2, 1.50, 40.0, 3); -- Granulés pour cochons (utilisateur_id = 3)
+
+-- Nourriture pour les lapins (type_animal_id = 3)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Granulés pour lapins', 3, 2.0, 1.20, 30.0, 1), -- Granulés pour lapins (utilisateur_id = 1)
+('Foin pour lapins', 3, 1.0, 0.40, 60.0, 2); -- Foin pour lapins (utilisateur_id = 2)
+
+-- Nourriture pour les moutons (type_animal_id = 4)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Foin pour moutons', 4, 1.2, 0.60, 70.0, 1), -- Foin pour moutons (utilisateur_id = 1)
+('Aliment pour moutons', 4, 1.5, 1.00, 50.0, 3); -- Aliment pour moutons (utilisateur_id = 3)
+
+-- Nourriture pour les chevaux (type_animal_id = 5)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Foin pour chevaux', 5, 1.0, 0.70, 90.0, 1), -- Foin pour chevaux (utilisateur_id = 1)
+('Granulés pour chevaux', 5, 1.8, 1.50, 40.0, 2); -- Granulés pour chevaux (utilisateur_id = 2)
+
+-- Nourriture pour les poules (type_animal_id = 6)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
+('Mélange pour poules', 6, 1.0, 0.80, 50.0, 1), -- Mélange pour poules (utilisateur_id = 1)
+('Graines pour poules', 6, 1.2, 1.00, 30.0, 3); -- Graines pour poules (utilisateur_id = 3)

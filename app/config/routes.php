@@ -3,7 +3,12 @@
 use app\controllers\userController;
 use app\controllers\typeAnimalController;
 use app\controllers\AnimalController;
+<<<<<<< HEAD
 use app\controllers\AchatController;
+=======
+use app\controllers\nourritureController;
+
+>>>>>>> 5cdd76d316849f22eb03b93cc14e1cbc504b6bee
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -17,7 +22,12 @@ $AnimalController = new AnimalController();
 $userController = new userController();
 $t = new typeAnimalController();
 $l = new AnimalController();
+<<<<<<< HEAD
 $AchatController = new AchatController();
+=======
+$f = new nourritureController();
+
+>>>>>>> 5cdd76d316849f22eb03b93cc14e1cbc504b6bee
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -38,6 +48,8 @@ $router->get('/template2',function(){
 $router ->get('/updateType',[ $t,'updateType']);
 
 
+
+$router->get('/food', [$f, 'showFoodPurchaseForm']);
 
 $router ->get('/admin',[ $t,'getAllType']);
 
