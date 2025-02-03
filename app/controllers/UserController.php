@@ -39,7 +39,7 @@ class UserController {
     }
 
     public function AffichageAchate() {
-        $Affichage = new AffichageModel(Flight::db());
+        $Affichage = new UserModel(Flight::db());
         $det = $Affichage->getAffichageAchate();
         Flight::render('listeAchate', [
             'AllAchat' => $det,
