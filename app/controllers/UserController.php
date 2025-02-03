@@ -15,7 +15,7 @@ class UserController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = new UserModel(Flight::db());
             $result = array();
-            $result = $user->login($_POST['nom']);
+            $result = $user->login($_POST['nom'],$_POST['mdp']);
             if ($result) {
                 $_SESSION['user'] = $result[0]['id'];
                 Flight::redirect('../../list');
@@ -27,8 +27,8 @@ class UserController {
     public function signin(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = new UserModel(Flight::db());
-            $test = $user->signin($_POST['nom']);
-            $result = $user->login($_POST['nom']);
+            $test = $user->signin($_POST['nom'],$_POST['mdp']);
+            $result = $user->login($_POST['nom'],$_POST['mdp']);
 
             if ($result) {
                 //session_start();
