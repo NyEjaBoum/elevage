@@ -3,6 +3,8 @@ USE elevage;
 
 CREATE TABLE elevage_utilisateur (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    email TEXT,
+    nom TEXT,
     capital DECIMAL(10, 2) NOT NULL
 );
 
