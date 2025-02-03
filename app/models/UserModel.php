@@ -24,7 +24,7 @@ class UserModel {
 
     public function getCapitalUser($user){
         $sql = "SELECT capital FROM elevage_utilisateur where id = $user";
-        $stmt = $this->db->query($sql);
+        $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['capital'];
     }

@@ -6,6 +6,7 @@ use app\controllers\AnimalController;
 use app\controllers\AchatController;
 use app\controllers\AcheterAnimalController;
 use app\controllers\nourritureController;
+use app\controllers\venteController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -41,9 +42,9 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 }); 
 
-$router ->get('/updateType',[ $t,'updateType']);
+$router->get('/updateType',[ $t,'updateType']);
 
-
+$router->get('/venteAnimal',[ $v, 'venteAnimal']);
 
 $router->get('/food', [$f, 'showFoodPurchaseForm']);
 
