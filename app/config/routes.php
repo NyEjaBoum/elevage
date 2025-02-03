@@ -44,7 +44,8 @@ $router->get('/admin',function(){
 //$router->get('/list',[ $hab, 'list' ]);
 
 //$router->get('/details',[ $hab, 'getById' ]);
-
+//
+//
 
 $router->get('/deleteHabit',[ $hab, 'delete' ]);
 
