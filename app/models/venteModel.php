@@ -11,34 +11,38 @@ class venteModel {
         $this->conn = $db;
     }
 
-
-
     public function getPoidsMinAnimal($id){
-        $sql = "SELECT poids_minimal_vente as poids FROM ELEVAGE_TYPEANIMAL WHERE ID = $id";
-        $stmt = $this->db->query($sql);
+        $sql = "SELECT poids_minimal_vente as poids FROM ELEVAGE_TYPEANIMAL WHERE id = $id";
+        $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['poids'];
     }
 
     public function getPrixParKgAnimal($id){
         $sql = "SELECT prix_vente_kg as prix FROM ELEVAGE_TYPEANIMAL WHERE ID = $id";
-        $stmt = $this->db->query($sql);
+        $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['prix'];
     }
 
-    public function getPrixAnimal($id){
-        $poids = $this->getPoidsMinAnimal($id);
-        $prixParKg = $this->getPrixAnimal($id);
-        $prix = $poids*$prixParKg;
-        return $prix;
+    public function getPrixAnimal($idAnimal) {
+        $poidsMin = $this->getPoidsMinAnimal($idAnimal);
+        $prixParKg = $this->getPrixParKgAnimal($idAnimal); // Appel correct de la méthode
+        return $poidsMin * $prixParKg;
     }
 
     public function getQuantiteAnimalUser($id,$user){
         $sql = "SELECT quantite from elevage_animal where utilisateur_id = $user AND id = $id";
-        $stmt = $this->db->query($sql);
+        $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['quantite'];
+    }
+
+    public function getPoidsActuel($id,$user){
+        $sql = "SELECT poids_actuel as poids from elevage_animal where utilisateur_id = $user AND id = $id";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['poids'];
     }
 
     public function updateCapitalUser($user, $prixVente) {
@@ -79,32 +83,45 @@ class venteModel {
         }
     }
     
+    public function venteAnimal($idAnimal, $id_utilisateur, $date, $quantite) {
+            if (count($idAnimal) !== count($quantite)) {
+                throw new Exception("Les tableaux 'id' et 'quantite' n'ont pas la même taille.");
+            }
+    
+            for ($i = 0; $i < count($idAnimal); $i++) {
+                $currentId = $idAnimal[$i];
+                $currentQuantite = $quantite[$i];
+                    echo $currentId;
+                    echo $currentQuantite;
 
-    public function venteAnimal($idAnimal, $id_utilisateur, $date, $quantite,$poids) {
-        try {
     
-            $prixAnimal = $this->getPrixAnimal($idAnimal);
-            //$poids = $this->getPoidsMinAnimal($idAnimal);
+                //$prixAnimal = $this->getPrixAnimal($currentId);
+
     
-            $sql1 = "INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) 
-                     VALUES ('vente', :montant, :date, :utilisateur_id, :animal_id, :quantite)";
-            $stmt1 = $this->conn->prepare($sql1);
-            $stmt1->execute([
-                ':montant' => $prixAnimal,
-                ':date' => $date,
-                ':utilisateur_id' => $id_utilisateur,
-                ':animal_id' => $idAnimal,
-                ':quantite' => $quantite
-            ]);
+                //$poids = $this->getPoidsActuel($currentId, $id_utilisateur);
+
     
-            $this->updateQuantite($idAnimal, $id_utilisateur, $quantite);
-    
-            $this->updateCapitalUser($id_utilisateur, $prixAnimal * $quantite);
+                //$montantTotal = $prixAnimal * $currentQuantite;
     
     
-        } catch (Exception $e) {
-            echo "Erreur lors de la vente de l'animal : " . $e->getMessage();
-        }
+                // $sql1 = "INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) 
+                //          VALUES ('vente', :montant, :date, :utilisateur_id, :animal_id, :quantite)";
+                // $stmt1 = $this->conn->prepare($sql1);
+                // $stmt1->execute([
+                //     ':montant' => $montantTotal,
+                //     ':date' => $date,
+                //     ':utilisateur_id' => $id_utilisateur,
+                //     ':animal_id' => $currentId,
+                //     ':quantite' => $currentQuantite
+                // ]);
+    
+                // $this->updateQuantite($currentId, $id_utilisateur, $currentQuantite);
+    
+                // $this->updateCapitalUser($id_utilisateur, $montantTotal);
+    
+            }
+    
+            return true;
     }
     
 }

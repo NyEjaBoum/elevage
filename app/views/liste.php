@@ -291,6 +291,7 @@
 
     <!-- Table -->
     <div class="table-container">
+    <form action="venteAnimal" method="GET">
         <div class="table-header">
             <h2 class="table-title">Liste des Animaux</h2>
         </div>
@@ -300,6 +301,7 @@
                     <th>Nom</th>
                     <th>Poids Actuel</th>
                     <th>Date d'Achat</th>
+                    <th>Quantité</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -307,24 +309,28 @@
                 <?php if (!empty($listings)): ?>
                     <?php foreach ($listings as $listing): ?>
                         <tr>
+                            <input type="hidden" name="id[]" value="<?= $listing['id'] ?>">
                             <td><?php echo htmlspecialchars($listing['nom']); ?></td>
                             <td><?php echo htmlspecialchars($listing['poids_actuel']); ?></td>
                             <td><?php echo htmlspecialchars($listing['date_achat']); ?></td>
                             <td>
-                                <button class="action-button">
-                                    <a href="vendre">Vendre</a>
-                                </button>
+                                <input type="number" name="quantite[]" value="<?= $listing['quantite'] ?>">
+                            </td>
+                            <td>
+                                <button class="action-button" type="submit">Vendre</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" class="no-listings">Aucun animal disponible</td>
+                        <td colspan="5" class="no-listings">Aucun animal disponible</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
-    </div>
+    </form>
+</div>
+
 </body>
 
 </html>
