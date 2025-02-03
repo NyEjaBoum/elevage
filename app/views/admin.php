@@ -236,7 +236,7 @@
                     <div class="listing-details">Quartier · 2 chambres</div>
                     <div class="listing-details">20-25 jan.</div>
                     <div class="listing-price">
-                        <span class="price-amount">120 €</span> par nuit
+                        <span class="price-amount">120 €</span> par nui
                     </div>
                 </div>
             </a>
