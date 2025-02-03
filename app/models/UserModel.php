@@ -22,6 +22,12 @@ class UserModel {
         $stmt->execute([$nom,$mdp]);
     }
 
+    public function getCapitalUser($user){
+        $sql = "SELECT capital FROM elevage_utilisateur where id = $user";
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetch();
+        return $result['capital'];
+    }
     
     public function getAffichageAchate(){
         $sql = "SELECT * FROM elevage_animal";
