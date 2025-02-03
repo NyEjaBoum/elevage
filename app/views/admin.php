@@ -210,9 +210,9 @@
 
     <!-- Listings -->
     <div class="table-container">
+        <form action="update_animals.php" method="POST">
             <div class="table-header">
                 <h2>Type animal</h2>
-
             </div>
             <table class="data-table">
                 <thead>
@@ -229,24 +229,27 @@
                     <?php 
                         foreach($type as $t){ ?>
                         <tr>
-                            <td><?= $t['nom'] ?></td>
-                            <td><?= $t['poids_minimal_vente'] ?></td>
-                            <td><?= $t['poids_maximal'] ?></td>
-                            <td><?= $t['prix_vente_kg'] ?></td>
-                            <td><?= $t['jours_sans_manger'] ?></td>
-                            <td><?= $t['pourcentage_perte_poids'] ?></td>
+                            <td><input type="text" name="nom" value="<?= $t['nom'] ?>"></td>
+                            <td><input type="number" name="poids_minimal_vente" value="<?= $t['poids_minimal_vente'] ?>"></td>
+                            <td><input type="number" name="prix_vente_kg" value="<?= $t['prix_vente_kg'] ?>"></td>
+                            <td><input type="number" name="poids_maximal" value="<?= $t['poids_maximal'] ?>"></td>
+                            <td><input type="number" name="jours_sans_manger" value="<?= $t['jours_sans_manger'] ?>"></td>
+                            <td><input type="number" name="pourcentage_perte_poids" value="<?= $t['pourcentage_perte_poids'] ?>"></td>
                         </tr>
                       <?php  }
                     ?>
                 </tbody>
             </table>
+
             <div>
-                <button class="btn btn-warning">
-                        <i class="fas fa-cart-shopping"></i> valider
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-plus"></i> Inserer
+                </button>
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-cart-shopping"></i> Valider
                 </button>
             </div>
-        </div>
-
+        </form>
     </div>
 
 </body>
