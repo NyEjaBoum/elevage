@@ -13,12 +13,6 @@ class ElevageAnimalModel {
         $this->db = $db;
     }
 
-    /**
-     * Récupère tous les animaux d'un utilisateur spécifique.
-     *
-     * @param int $utilisateur_id L'ID de l'utilisateur.
-     * @return array|false Liste des animaux de l'utilisateur ou false en cas d'erreur.
-     */
     public function getAnimauxByUtilisateur($utilisateur_id) {
         try {
             $sql = "SELECT ea.*, et.nom AS type_animal_nom 
