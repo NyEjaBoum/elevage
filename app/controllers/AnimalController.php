@@ -8,16 +8,15 @@ use PDO;
 
 class AnimalController {
     private $db;
-    private $elevageAnimalModel;
 
-    public function __construct($db) {
-        $this->db = $db;
-        $this->elevageAnimalModel = new ElevageAnimalModel($this->db);
+    public function __construct() {
+    
     }
 
     public function listAnimaux() {
-        $animaux = $this->elevageAnimalModel->getAnimauxByUtilisateur($_SESSION['user']);
-        Flight::render('liste',['animaux' => $animaux]);
+        $e = new ElevageAnimalModel(Flight::db());
+        $animaux = $e->getAnimauxByUtilisateur($_SESSION['user']);
+        Flight::render('liste',['listings' => $animaux]);
     }
 }
 

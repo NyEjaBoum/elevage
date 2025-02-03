@@ -2,6 +2,7 @@
 
 use app\controllers\userController;
 use app\controllers\typeAnimalController;
+use app\controllers\AnimalController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -14,6 +15,7 @@ use flight\net\Router;
 
 $userController = new userController();
 $t = new typeAnimalController();
+$l = new AnimalController();
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -32,11 +34,9 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 });
 
-$router->get('/list',function(){
-	Flight::render('liste');
-});
-
 $router ->get('/admin',[ $t,'getAllType']);
+
+$router ->get('/list',[ $l,'listAnimaux']);
 
 $router->post('/login',[ $userController, 'login' ]);
 
