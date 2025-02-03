@@ -25,19 +25,43 @@ class typeAnimalModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   public function updateType($id, $nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage) {
-        $sql = "UPDATE elevage_typeAnimal 
-                SET nom = ?, 
-                    poids_minimal_vente = ?, 
-                    poids_maximal = ?, 
-                    prix_vente_kg = ?, 
-                    jours_sans_manger = ?, 
-                    pourcentage_perte_poids = ? 
-                WHERE id = ?"; 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage, $id]);
-        return $stmt->rowCount();
+    public function updateType($ids, $noms, $poidsMins, $poidsMaxs, $prixVenteKgs, $jours, $pourcentages) {
+        try {
+            // Parcourir chaque ligne
+            for ($i = 0; $i < count($ids); $i++) {
+                $id = $ids[$i];
+                $nom = $noms[$i];
+                $poidsMin = $poidsMins[$i];
+                $poidsMax = $poidsMaxs[$i];
+                $prixVenteKg = $prixVenteKgs[$i];
+                $jour = $jours[$i];
+                $pourcentage = $pourcentages[$i];
+                $sql = "UPDATE elevage_typeAnimal 
+                        SET nom = '$nom', 
+                            poids_minimal_vente = $poidsMin, 
+                            poids_maximal = $poidsMax, 
+                            prix_vente_kg = $prixVenteKg, 
+                            jours_sans_manger = $jour, 
+                            pourcentage_perte_poids = $pourcentage 
+                        WHERE id = $id"; 
+    
+                $stmt = $this->conn->exec($sql);
+    
+                if ($stmt > 0) {
+                    echo "Mise à jour réussie pour l'id $id<br>";
+                } else {
+                    echo "Aucune ligne mise à jour pour l'id $id<br>";
+                }
+            }
+    
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour : " . $e->getMessage();
+            return false;
+        }
     }
+    
+    
 
     /*public function updateType($id, $nom, $poidsMin, $poidsMax, $prixVenteKg, $jour, $pourcentage) {
         $columns = [];

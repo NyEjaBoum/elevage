@@ -18,7 +18,7 @@ class UserController {
             $result = $user->login($_POST['nom'],$_POST['mdp']);
             if ($result) {
                 $_SESSION['user'] = $result[0]['id'];
-                Flight::redirect('../../list');
+                Flight::redirect('list');
             }
         }
     }    
@@ -33,7 +33,7 @@ class UserController {
             if ($result) {
                 //session_start();
                 $_SESSION['user'] = $result[0]['id'];
-                Flight::redirect('../../list');
+                Flight::redirect('list');
             }
         }
     }
