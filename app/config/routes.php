@@ -33,7 +33,11 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 });
 
-$router->get('/list',[ $hab, 'list' ]);
+$router->get('/list',function(){
+	Flight::render('liste');
+});
+
+//$router->get('/list',[ $hab, 'list' ]);
 
 //$router->get('/details',[ $hab, 'getById' ]);
 

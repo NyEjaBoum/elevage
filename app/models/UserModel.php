@@ -13,7 +13,7 @@ class UserModel {
 
     public function login($nom) {
         $stmt = $this->conn->prepare("SELECT * FROM elevage_utilisateur WHERE nom = ?");
-        $stmt->execute([$email, $mdp]);
+        $stmt->execute([$nom]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
