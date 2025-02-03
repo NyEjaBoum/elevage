@@ -40,17 +40,6 @@ $router->get('/admin',function(){
 	Flight::render('admin');
 });
 
-<<<<<<< HEAD
-//$router->get('/list',[ $hab, 'list' ]);
-
-//$router->get('/details',[ $hab, 'getById' ]);
-//
-//
-=======
-
->>>>>>> 7dfb37dc6373ea3af3fe6f2cae9b4939c68fcf30
-
-
 $router->post('/login',[ $userController, 'login' ]);
 
 $router->post('/signin',[ $userController, 'signin' ]);
