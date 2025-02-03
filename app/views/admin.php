@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locations Saisonnières</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/liste.css">
+
     <style>
         /* Reset and base styles */
         body {
@@ -205,44 +207,35 @@
     </nav>
 
     <!-- Categories -->
-    <div class="categories-container">
-        <div class="categories">
-            <div class="category active">
-                <i class="fas fa-hotel"></i>
-                <span>Insertion type animal</span>
-            </div>
-        </div>
-    </div>
 
     <!-- Listings -->
-    <div class="listings-container">
-        <div class="listings-grid">
-            <!-- Listing Card Template -->
-            <a href="#" class="listing-card">
-                <div class="listing-image-container">
-                    <img src="placeholder-image.jpg" alt="Listing" class="listing-image">
-                    <button class="favorite-button">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="listing-info">
-                    <div class="listing-header">
-                        <div class="listing-title">Titre de l'habitation</div>
-                        <div class="listing-rating">
-                            <i class="fas fa-star"></i>
-                            4.92
-                        </div>
-                    </div>
-                    <div class="listing-details">Quartier · 2 chambres</div>
-                    <div class="listing-details">20-25 jan.</div>
-                    <div class="listing-price">
-                        <span class="price-amount">120 €</span> par nui
-                    </div>
-                </div>
-            </a>
+    <div class="table-container">
+            <div class="table-header">
+                <h2>Type animal</h2>
 
-            <!-- Additional listing cards can be added here -->
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Espece</th>
+                        <th>Poids_minimal_vente</th>
+                        <th>prix de vente kg</th>
+                        <th>Poids Maximal</th>
+                        <th>Nb jour sans manger</th>
+                        <th>%_perte_de_poids</th>
+                    </tr>
+                </thead>
+                <tbody id="listeAnimaux">
+                    <!-- Les données seront chargées dynamiquement -->
+                </tbody>
+            </table>
+            <div>
+                <button class="btn btn-warning">
+                        <i class="fas fa-cart-shopping"></i> valider
+                </button>
+            </div>
         </div>
+
     </div>
 
 </body>

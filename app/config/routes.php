@@ -1,7 +1,7 @@
 <?php
 
 use app\controllers\userController;
-use app\controllers\HabitationController;
+use app\controllers\typeAnimalController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -13,7 +13,7 @@ use flight\net\Router;
 
 
 $userController = new userController();
-
+$t = new typeAnimalController();
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -36,11 +36,7 @@ $router->get('/list',function(){
 	Flight::render('liste');
 });
 
-$router->get('/admin',function(){
-	Flight::render('admin');
-});
-
-
+$router ->get('/admin',[ $t,'admin']);
 
 
 $router->post('/login',[ $userController, 'login' ]);
