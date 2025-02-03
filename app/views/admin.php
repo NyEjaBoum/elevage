@@ -226,7 +226,18 @@
                     </tr>
                 </thead>
                 <tbody id="listeAnimaux">
-                    <!-- Les données seront chargées dynamiquement -->
+                    <?php 
+                        foreach($type as $t){ ?>
+                        <tr>
+                            <td><?= $t['nom'] ?></td>
+                            <td><?= $t['poids_minimal_vente'] ?></td>
+                            <td><?= $t['poids_maximal'] ?></td>
+                            <td><?= $t['prix_vente_kg'] ?></td>
+                            <td><?= $t['jours_sans_manger'] ?></td>
+                            <td><?= $t['pourcentage_perte_poids'] ?></td>
+                        </tr>
+                      <?php  }
+                    ?>
                 </tbody>
             </table>
             <div>

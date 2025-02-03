@@ -36,7 +36,7 @@ $router->get('/list',function(){
 	Flight::render('liste');
 });
 
-$router ->get('/admin',[ $t,'admin']);
+$router ->get('/admin',[ $t,'getAllType']);
 
 $router->post('/login',[ $userController, 'login' ]);
 

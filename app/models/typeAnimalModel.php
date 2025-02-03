@@ -11,7 +11,7 @@ class typeAnimalModel {
         $this->conn = $db;
     }
 
-    public function getAllType($nom,$mdp) {
+    public function getAllType() {
         $sql = "SELECT * FROM elevage_typeAnimal";
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -20,15 +20,9 @@ class AnimalController {
      *
      * @param int $utilisateur_id L'ID de l'utilisateur.
      */
-    public function listAnimaux($utilisateur_id) {
-        // Récupérer les animaux de l'utilisateur
-        $animaux = $this->elevageAnimalModel->getAnimauxByUtilisateur($utilisateur_id);
-
-        // Renvoyer les données au format JSON (ou à une vue)
-        Flight::json([
-            'status' => 'success',
-            'data' => $animaux
-        ]);
+    public function listAnimaux() {
+        $animaux = $this->elevageAnimalModel->getAnimauxByUtilisateur($_SESSION['user']);
+        Flight::render('liste',['animaux' => $animaux]);
     }
 }
 
