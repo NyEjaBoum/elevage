@@ -15,8 +15,7 @@ class AcheterAnimalModel {
     public function getAnimalsByUser() {
             $stmt = $this->db->prepare("SELECT * FROM elevage_animal group by utilisateur_id");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll();
     }
-
 }
 ?>

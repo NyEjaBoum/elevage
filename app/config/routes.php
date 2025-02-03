@@ -22,6 +22,7 @@ $l = new AnimalController();
 $AchatController = new AchatController();
 $a = new AcheterAnimalController();
 $f = new nourritureController();
+$ac = new AchatController();
 
 
 $router->get('/',function(){
@@ -50,12 +51,13 @@ $router ->get('/admin',[ $t,'getAllType']);
 
 $router ->get('/list',[ $l,'listAnimaux']);
 
+$router->post('/achat', [$ac, 'achatAnimal']);
+
 $router ->get('/listeAnimal',[ $a,'getAnimaux']);
 
 $router->post('/login',[ $userController, 'login' ]);
 
 $router->post('/signin',[ $userController, 'signin' ]);
-
 
 $router->get('/AffichageAchat',[ $userController, 'AffichageAchate' ]);
 

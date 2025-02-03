@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Élevage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Ajoutez le CSS ci-dessus ici -->
-     <style>
-                    body {
+    <style>
+        body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
@@ -232,9 +233,9 @@
                 padding: 0.5rem 1rem;
             }
         }
-
-     </style>
+    </style>
 </head>
+
 <body>
     <!-- Dashboard -->
     <div class="dashboard">
@@ -305,11 +306,12 @@
                             <td><?php echo ($listing['nom']); ?></td>
                             <td><?php echo ($listing['poids_actuel']); ?></td>
                             <td><?php echo ($listing['date_achat']); ?></td>
-                            <td>
-                                <button class="action-button">
-                                    <a href="vendre">Vendre</a>
-                                </button>
-                            </td>
+                            <form method="post" action="achat">
+                                <input type="hidden" name="nom" value="<?php echo $listing['nom']; ?>">
+                                <input type="hidden" name="poids_actuel" value="<?php echo $listing['poids_actuel']; ?>">
+                                <input type="hidden" name="type_animal_id" value="<?php echo $listing['type_animal_id']; ?>">
+                                <button type="submit" class="action-button">Acheter</button>
+                            </form>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -321,4 +323,5 @@
         </table>
     </div>
 </body>
+
 </html>
