@@ -244,28 +244,5 @@
     </div>
 </div>
     </div>
-
-    <script>
-        // Category selection
-        const categories = document.querySelectorAll('.category');
-        categories.forEach(category => {
-            category.addEventListener('click', () => {
-                categories.forEach(c => c.classList.remove('active'));
-                category.classList.add('active');
-            });
-        });
-
-        // Favorite button toggle
-        const favoriteButtons = document.querySelectorAll('.favorite-button');
-        favoriteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                button.classList.toggle('active');
-                const icon = button.querySelector('i');
-                icon.classList.toggle('far');
-                icon.classList.toggle('fas');
-            });
-        });
-    </script>
 </body>
 </html>
