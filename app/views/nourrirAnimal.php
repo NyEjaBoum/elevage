@@ -151,7 +151,7 @@
 
 <body>
     <div class="container">
-        <h1>Achat de Nourriture</h1>
+        <h1>Nourrir Animal</h1>
 
         <?php if (isset($error)): ?>
             <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
@@ -168,38 +168,18 @@
                         <th>Animal</th>
                         <th>Nourriture</th>
                         <th>Quantité (kg)</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <form method="POST" action="achatNourriture" class="food-purchase-form">
                             <input type="hidden" name="action" value="purchase_food">
-                            <td>
-                                <select name="animal_id" id="animal_id" required>
-                                    <?php foreach ($animals as $animal): ?>
-                                        <option value="<?php echo $animal->id; ?>">
-                                            <?php echo htmlspecialchars($animal->nom); ?>
-                                            (<?php echo $animal->poids_actuel; ?> kg)
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="food_id" id="food_id" required>
-                                    <?php foreach ($foods as $food): ?>
-                                        <option value="<?php echo $food['id']; ?>">
-                                            <?php echo htmlspecialchars($food['nom']); ?>
-                                            (<?php echo $food['stock']; ?> kg, <?php echo $food['prix_kg']; ?> €/kg)
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                            <td>
+                    
+                            <td>Quantite
                                 <input type="number" name="quantite" id="quantity" step="0.1" min="0">
                             </td>
                             <td>
-                                <button type="submit" class="btn">Acheter</button>
+                                <button type="submit" class="btn">Nourrir</button>
                             </td>
                         </form>
                     </tr>

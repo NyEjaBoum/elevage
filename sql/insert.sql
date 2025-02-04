@@ -37,31 +37,31 @@ INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transacti
 ('achat_nourriture', 50.00, '2025-01-18', 2, NULL, 10.0);
 
 -- Nourriture pour les vaches (type_animal_id = 1)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Foin pour vaches', 1, 1.5, 0.50, 100.0, 1), -- Foin pour vaches (utilisateur_id = 1)
-('Aliment concentré pour vaches', 1, 2.0, 1.20, 50.0, 2); -- Aliment concentré pour vaches (utilisateur_id = 2)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Foin pour vaches', 1, 1.5, 0.50, 100.0), -- Foin pour vaches = 1)
+('Aliment concentré pour vaches', 1, 2.0, 1.20, 50.0); -- Aliment concentré pour vaches = 2)
 
 -- Nourriture pour les cochons (type_animal_id = 2)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Mélange pour cochons', 2, 1.8, 0.80, 80.0, 1), -- Mélange pour cochons (utilisateur_id = 1)
-('Granulés pour cochons', 2, 2.2, 1.50, 40.0, 3); -- Granulés pour cochons (utilisateur_id = 3)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Mélange pour cochons', 2, 1.8, 0.80, 80.0), -- Mélange pour cochons = 1)
+('Granulés pour cochons', 2, 2.2, 1.50, 40.0); -- Granulés pour cochons = 3)
 
 -- Nourriture pour les lapins (type_animal_id = 3)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Granulés pour lapins', 3, 2.0, 1.20, 30.0, 1), -- Granulés pour lapins (utilisateur_id = 1)
-('Foin pour lapins', 3, 1.0, 0.40, 60.0, 2); -- Foin pour lapins (utilisateur_id = 2)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Granulés pour lapins', 3, 2.0, 1.20, 30.0), -- Granulés pour lapins = 1)
+('Foin pour lapins', 3, 1.0, 0.40, 60.0); -- Foin pour lapins = 2)
 
 -- Nourriture pour les moutons (type_animal_id = 4)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Foin pour moutons', 4, 1.2, 0.60, 70.0, 1), -- Foin pour moutons (utilisateur_id = 1)
-('Aliment pour moutons', 4, 1.5, 1.00, 50.0, 3); -- Aliment pour moutons (utilisateur_id = 3)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Foin pour moutons', 4, 1.2, 0.60, 70.0), -- Foin pour moutons = 1)
+('Aliment pour moutons', 4, 1.5, 1.00, 50.0); -- Aliment pour moutons = 3)
 
 -- Nourriture pour les chevaux (type_animal_id = 5)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Foin pour chevaux', 5, 1.0, 0.70, 90.0, 1), -- Foin pour chevaux (utilisateur_id = 1)
-('Granulés pour chevaux', 5, 1.8, 1.50, 40.0, 2); -- Granulés pour chevaux (utilisateur_id = 2)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Foin pour chevaux', 5, 1.0, 0.70, 90.0), -- Foin pour chevaux = 1)
+('Granulés pour chevaux', 5, 1.8, 1.50, 40.0); -- Granulés pour chevaux = 2)
 
 -- Nourriture pour les poules (type_animal_id = 6)
-INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock, utilisateur_id) VALUES
-('Mélange pour poules', 6, 1.0, 0.80, 50.0, 1), -- Mélange pour poules (utilisateur_id = 1)
-('Graines pour poules', 6, 1.2, 1.00, 30.0, 3); -- Graines pour poules (utilisateur_id = 3)
+INSERT INTO elevage_nourriture (nom, type_animal_id, pourcentage_gain_poids, prix_kg, stock) VALUES
+('Mélange pour poules', 6, 1.0, 0.80, 50.0), -- Mélange pour poules = 1)
+('Graines pour poules', 6, 1.2, 1.00, 30.0); -- Graines pour poules = 3)

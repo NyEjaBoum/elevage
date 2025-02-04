@@ -8,6 +8,14 @@ CREATE TABLE elevage_utilisateur (
     capital DECIMAL(10, 2) NOT NULL
 );
 
+CREATE TABLE DEPOTS(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUser INT ,
+    Valeur INT,
+    is_valide BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (idUser) REFERENCES elevage_utilisateur(id)
+);
+
 CREATE TABLE elevage_typeAnimal (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
@@ -28,6 +36,7 @@ CREATE TABLE elevage_animal (
     utilisateur_id INT,
     type_animal_id INT,
     quantite INT,
+    quota_nourriture_journalier DECIMAL(10,2)
     FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
     FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
 );
@@ -77,7 +86,15 @@ CREATE TABLE elevage_nourriture (
     pourcentage_gain_poids DECIMAL(5, 2) NOT NULL, -- % de gain de poids par jour
     prix_kg DECIMAL(10, 2) NOT NULL, -- Prix au kg de la nourriture
     stock DECIMAL(10, 2) NOT NULL DEFAULT 0, -- Stock disponible en kg
-    utilisateur_id INT NOT NULL, -- Utilisateur propriétaire de la nourriture
-    FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id),
-    FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id)
+    FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
+);
+
+CREATE TABLE elevage_stockUtilisateur (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idNourriture INT, -- Référence à la nourriture
+    utilisateur_id INT NOT NULL, -- Référence à l'utilisateur
+    quantite DECIMAL(10, 2) NOT NULL DEFAULT 0, -- Quantité de nourriture en stock (en kg)
+    FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
+    FOREIGN KEY (idNourriture) REFERENCES elevage_nourriture(id),
+    UNIQUE KEY unique_stock (idNourriture, utilisateur_id) -- Contrainte d'unicité
 );

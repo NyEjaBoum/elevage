@@ -11,8 +11,22 @@ class venteModel {
         $this->conn = $db;
     }
 
+    public function getType($id){
+        $sql = "SELECT type_animal_id as types FROM ELEVAGE_ANIMAL WHERE id = $id";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['types'];
+    }
+
     public function getPoidsMinAnimal($id){
         $sql = "SELECT poids_minimal_vente as poids FROM ELEVAGE_TYPEANIMAL WHERE id = $id";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['poids'];
+    }
+
+    public function getPoidsMaxAnimal($id){
+        $sql = "SELECT poids_maximal as poids FROM ELEVAGE_TYPEANIMAL WHERE id = $id";
         $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['poids'];
@@ -26,8 +40,9 @@ class venteModel {
     }
 
     public function getPrixAnimal($idAnimal) {
-        $poidsMin = $this->getPoidsMinAnimal($idAnimal);
-        $prixParKg = $this->getPrixParKgAnimal($idAnimal); // Appel correct de la méthode
+        $id = $this->getType($idAnimal);
+        $poidsMin = $this->getPoidsMinAnimal($id);
+        $prixParKg = $this->getPrixParKgAnimal($id); // Appel correct de la méthode
         return $poidsMin * $prixParKg;
     }
 
@@ -36,6 +51,13 @@ class venteModel {
         $stmt = $this->conn->query($sql);
         $result = $stmt->fetch();
         return $result['quantite'];
+    }
+
+    public function getPourcentageGain($idFood){
+        $sql = "SELECT pourcentage_gain_poids as prc from elevage_nourriture where id = $idFood";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['prc'];
     }
 
     public function getPoidsActuel($id,$user){
@@ -88,15 +110,18 @@ class venteModel {
     
                 $currentId = $idAnimal;
                 $currentQuantite = $quantite;
-                    echo $currentId;
-                    echo $currentQuantite;
 
-    
                 $prixAnimal = $this->getPrixAnimal($currentId);
+                $id = $this->getType($idAnimal);
 
+                $poidMin = $this->getPoidsMinAnimal($id);
+                $poidMax = $this->getPoidsMaxAnimal($id);
     
                 $poids = $this->getPoidsActuel($currentId, $id_utilisateur);
 
+                if($poids>=$poidMax || $poids<=$poidMin){
+                    return false;
+                }
     
                 $montantTotal = $prixAnimal * $currentQuantite;
     

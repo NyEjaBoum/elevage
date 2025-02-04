@@ -22,4 +22,6 @@ class ElevageAnimalModel {
             $stmt->execute([$utilisateur_id]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
 }

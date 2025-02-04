@@ -12,7 +12,7 @@ class venteController
 
     public function __construct() {}
 
-    
+
     public function planifierVente() {
         $b = new venteModel(Flight::db());
     
@@ -48,7 +48,9 @@ class venteController
         }
     
         Flight::render('planifier', ['animal' => $animal]);
-    }    public function venteAnimal()
+    }    
+    
+        public function venteAnimal()
     {
         $b = new venteModel(Flight::db());
         // Vérification des paramètres requis
