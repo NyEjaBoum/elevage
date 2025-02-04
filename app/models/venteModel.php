@@ -84,42 +84,39 @@ class venteModel {
     }
     
     public function venteAnimal($idAnimal, $id_utilisateur, $date, $quantite) {
-            if (count($idAnimal) !== count($quantite)) {
-                throw new Exception("Les tableaux 'id' et 'quantite' n'ont pas la même taille.");
-            }
+
     
-            for ($i = 0; $i < count($idAnimal); $i++) {
-                $currentId = $idAnimal[$i];
-                $currentQuantite = $quantite[$i];
+                $currentId = $idAnimal;
+                $currentQuantite = $quantite;
                     echo $currentId;
                     echo $currentQuantite;
 
     
-                //$prixAnimal = $this->getPrixAnimal($currentId);
+                $prixAnimal = $this->getPrixAnimal($currentId);
 
     
-                //$poids = $this->getPoidsActuel($currentId, $id_utilisateur);
+                $poids = $this->getPoidsActuel($currentId, $id_utilisateur);
 
     
-                //$montantTotal = $prixAnimal * $currentQuantite;
+                $montantTotal = $prixAnimal * $currentQuantite;
     
     
-                // $sql1 = "INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) 
-                //          VALUES ('vente', :montant, :date, :utilisateur_id, :animal_id, :quantite)";
-                // $stmt1 = $this->conn->prepare($sql1);
-                // $stmt1->execute([
-                //     ':montant' => $montantTotal,
-                //     ':date' => $date,
-                //     ':utilisateur_id' => $id_utilisateur,
-                //     ':animal_id' => $currentId,
-                //     ':quantite' => $currentQuantite
-                // ]);
+                $sql1 = "INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) 
+                         VALUES ('vente', :montant, :date, :utilisateur_id, :animal_id, :quantite)";
+                $stmt1 = $this->conn->prepare($sql1);
+                $stmt1->execute([
+                    ':montant' => $montantTotal,
+                    ':date' => $date,
+                    ':utilisateur_id' => $id_utilisateur,
+                    ':animal_id' => $currentId,
+                    ':quantite' => $currentQuantite
+                ]);
     
-                // $this->updateQuantite($currentId, $id_utilisateur, $currentQuantite);
+                $this->updateQuantite($currentId, $id_utilisateur, $currentQuantite);
     
-                // $this->updateCapitalUser($id_utilisateur, $montantTotal);
+                $this->updateCapitalUser($id_utilisateur, $montantTotal);
     
-            }
+            
     
             return true;
     }

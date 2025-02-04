@@ -18,7 +18,7 @@ class venteController {
         $quantite = $_GET['quantite'];
         $u = new venteModel(Flight::db());
         $vente = $u->venteAnimal($idAnimal,$user,$date,$quantite);
-        //Flight::redirect("list");
+        Flight::redirect("list?success");
     }
 }
 ?>

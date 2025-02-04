@@ -26,6 +26,7 @@ CREATE TABLE elevage_animal (
     est_vivant BOOLEAN DEFAULT TRUE,
     utilisateur_id INT,
     type_animal_id INT,
+    quantite INT,
     FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
     FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
 );
