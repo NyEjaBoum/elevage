@@ -43,7 +43,6 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 }); 
 
-<<<<<<< Updated upstream
 
 $router->get('/depot',function(){
 	Flight::render('depot');
@@ -56,7 +55,6 @@ $router->get('/liste',function(){
 $router->get('/allDepot',function(){
 	Flight::render('allDepot');
 }); 
-=======
 $router->get('/nourrir',function(){
 	Flight::render('nourrirAnimal');
 });
