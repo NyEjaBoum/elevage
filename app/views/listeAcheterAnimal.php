@@ -253,6 +253,10 @@
                     <i class="fas fa-shopping-cart"></i>
                     <a href="food">Acheter Nourriture</a>
                 </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="list">Liste des Animal</a>
+                </button>
             </div>
         </div>
     </div>
