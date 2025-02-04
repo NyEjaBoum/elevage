@@ -157,8 +157,8 @@
         <div class="form-container login-container">
             <form action="login" method="POST">
                 <h1>Connexion</h1>
-                <input type="text" placeholder="nom" name="nom"  required>
-                <input type="text" placeholder="mot de passe" name="mdp" required>
+                <input type="text" placeholder="nom" name="nom" value="Utilisateur1"  required>
+                <input type="text" placeholder="mot de passe" value="motdepasse1" name="mdp" required>
                 <button type="submit">Se connecter</button>
             </form>
         </div>
@@ -192,4 +192,6 @@
         });
     </script>
 </body>
+<?php include('footer.php'); ?>
+
 </html>

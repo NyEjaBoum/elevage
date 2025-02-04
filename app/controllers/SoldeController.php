@@ -49,11 +49,10 @@ class SoldeController {
         $valeur = $_POST['montant'];
         
         // Réduction de 10 % sur le montant
-        $valeurReduite = $valeur * 0.9;
         
         $u = new SoldeModel(Flight::db());
         // Insertion avec le montant réduit
-        $insert = $u->insertDepot($userId, $valeurReduite);
+        $insert = $u->insertDepot($userId, $valeur);
         
         // Redirection avec le message de succès
         Flight::redirect('depot?depot=success');

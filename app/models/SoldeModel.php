@@ -19,32 +19,30 @@ class SoldeModel {
     }
    ////////////////////////////////////////////////////////
     public function insertDepot($userId,$montant){
-        $sql = "INSERT INTO DEPOTS(idUser,valeur)VALUES($userId,$montant)";
+        $sql = "INSERT INTO elevage_depots(idUser,valeur)VALUES($userId,$montant)";
         $this->db->query($sql);
+
+        $depotAccepterTotal = $this->getDepotUser($userId);
+        $newSolde = $depotAccepterTotal;
+        
+        $sql2 = "UPDATE elevage_utilisateur SET Capital = $newSolde WHERE ID = $userId";
+        $this->db->query($sql2);
     }
    ///////////////////////////////////////////////////////
     public function showDepot(){
-        $sql = "SELECT * FROM DEPOTS";
+        $sql = "SELECT * FROM elevage_depots";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
 
     public function getDepotUser($userId){
-        $sql = "SELECT SUM(VALEUR) AS DEPOTS FROM DEPOTS WHERE IDUSER = $userId";
+        $sql = "SELECT SUM(VALEUR) AS DEPOTS FROM elevage_depots WHERE IDUSER = $userId";
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         return $result['DEPOTS'];
     }
 
-    public function valideDepot($id,$userId){
-        $sql = "UPDATE DEPOTS SET is_valide = TRUE WHERE id = $id";
-        $this->db->query($sql);
-        $depotAccepterTotal = $this->getDepotUser($userId);
-        $newSolde = $depotAccepterTotal;
 
-        $sql = "UPDATE elevage_utilisateur SET Capital = $newSolde WHERE ID = $userId";
-        $this->db->query($sql);
-    }
 
     public function getSolde($userId) {
         $sql = "SELECT SOLDE FROM USERS WHERE ID = $userId";

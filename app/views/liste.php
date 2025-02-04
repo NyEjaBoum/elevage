@@ -488,7 +488,7 @@
         </div>
     </div>
 </body>
-
+<?php include('footer.php'); ?>
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -7,7 +7,41 @@
     <link rel="stylesheet" href="css/accueil.css">
 </head>
 <body>
+<div class="dashboard">
+        <div class="dashboard-content">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                Élevage <?php echo ($_SESSION['user']); ?>
+            </div>
+            <div class="user-menu">
+                <button class="dashboard-button">
+                    <i class="fas fa-user-shield"></i>
+                    <a href="admin">Admin</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="food">Acheter Nourriture</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="listeAnimal">Acheter Animal</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="depot">Faire un depot</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="listeVente">Liste Vente Planifier</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="dashboard">Tableau de Bord</a>
+                </button>
 
+            </div>
+        </div>
+    </div>
 <div class="main-content">
     <div class="container">
         <h1>Formulaire de Dépôt d'Argent</h1>
@@ -38,6 +72,7 @@
         <a href="liste" class="back-button">Retour</a>
     </div>
 </div>
+<?php include('footer.php'); ?>
 
 </body>
 </html>

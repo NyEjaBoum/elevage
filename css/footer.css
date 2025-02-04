@@ -1,0 +1,64 @@
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin-top: auto; /* Pour le positionner en bas de la page */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+.footer-text strong {
+    color: #f9fafb;
+    font-weight: 600;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #2563eb;
+}
+
+.footer-copyright {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-text {
+        font-size: 0.875rem;
+    }
+}

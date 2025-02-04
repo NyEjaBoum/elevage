@@ -42,7 +42,7 @@ class nourritureController {
         $quantite = $_POST['quantite'];
         $n = new nourritureModel(Flight::db());
         $achat = $n->updateStockUtilisateur($_SESSION['user'],$idNourriture,$quantite);
-        Flight::redirect('food?success');
+        Flight::redirect('list');
     }
 
     public function simulation() {
