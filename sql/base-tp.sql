@@ -32,6 +32,7 @@ CREATE TABLE elevage_animal (
     poids_actuel DECIMAL(10, 2) NOT NULL,
     date_achat DATE NOT NULL,
     est_vivant BOOLEAN DEFAULT TRUE,
+    autoVente BOOLEAN DEFAULT FALSE,
     utilisateur_id INT,
     type_animal_id INT,
     quantite INT,
@@ -52,6 +53,17 @@ CREATE TABLE elevage_animal_for_Achat (
     quantite INT,
     FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
     FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
+);
+
+CREATE TABLE elevage_vente_planifiee (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    animal_id INT,
+    utilisateur_id INT,
+    date_prevue DATE,
+    quantite INT,
+    est_execute BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (animal_id) REFERENCES elevage_animal(id),
+    FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id)
 );
 
 
