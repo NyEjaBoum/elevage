@@ -306,12 +306,21 @@
                             <td><?php echo ($listing['nom']); ?></td>
                             <td><?php echo ($listing['poids_actuel']); ?></td>
                             <td><?php echo ($listing['date_achat']); ?></td>
-                            <form method="post" action="achat">
-                                <input type="hidden" name="nom" value="<?php echo $listing['nom']; ?>">
-                                <input type="hidden" name="poids_actuel" value="<?php echo $listing['poids_actuel']; ?>">
-                                <input type="hidden" name="type_animal_id" value="<?php echo $listing['type_animal_id']; ?>">
-                                <button type="submit" class="action-button">Acheter</button>
-                            </form>
+                            <td>
+                                <form method="POST" action="achat">
+                                    <input type="hidden" name="nom" value="<?php echo $listing['nom']; ?>">
+                                    <input type="hidden" name="poids_actuel" value="<?php echo $listing['poids_actuel']; ?>">
+                                    <input type="hidden" name="type_animal_id" value="<?php echo $listing['type_animal_id']; ?>">
+                                    <input type="hidden" name="vendeur_id" value="<?php echo $listing['utilisateur_id']; ?>">
+                                    <input type="hidden" name="animal_id" value="<?php echo $listing['id']; ?>">
+                                    <input type="hidden" name="quantite" value="1">
+                                    <?php
+                                    $prix = $listing['poids_actuel'] * $listing['prix_vente_kg'];
+                                    ?>
+                                    <input type="hidden" name="prix" value="<?php echo $prix; ?>">
+                                    <button type="submit" class="action-button">Acheter</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

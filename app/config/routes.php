@@ -44,7 +44,7 @@ $router->get('/template2',function(){
 
 $router->get('/updateType',[ $t,'updateType']);
 
-$router->get('/venteAnimal',[ $v, 'venteAnimal']);
+// $router->get('/venteAnimal',[ $v, 'venteAnimal']);
 
 $router->get('/food', [$f, 'showFoodPurchaseForm']);
 
