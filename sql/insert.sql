@@ -13,19 +13,19 @@ INSERT INTO elevage_typeAnimal (nom, poids_minimal_vente, poids_maximal, prix_ve
 ('Poule', 1.0, 2.0, 12.00, 2, 1.0);
 
 -- Insérer des animaux dans la table elevage_animal
-INSERT INTO elevage_animal (nom, poids_actuel, date_achat, est_vivant, utilisateur_id, type_animal_id,quantite) VALUES
-('Vache Tachetée', 45.5, '2025-01-01', TRUE, 1, 1,1),
-('Vache Brune', 47.0, '2025-01-02', TRUE, 1, 1,5),
-('Cochon Gris', 22.1, '2025-01-03', TRUE, 1, 2,3),
-('Cochon Rose', 24.5, '2025-01-04', TRUE, 1, 2,4),
-('Lapin Beige', 1.8, '2025-01-05', TRUE, 1, 3,1),
-('Lapin Blanc', 2.0, '2025-01-06', TRUE, 1, 3,1),
-('Mouton Blanc', 20.5, '2025-01-07', TRUE, 1, 4,2),
-('Mouton Marron', 18.3, '2025-01-08', TRUE, 1, 4,4),
-('Cheval Noir', 35.2, '2025-01-09', TRUE, 1, 5,1),
-('Cheval Blanc', 37.8, '2025-01-10', TRUE, 1, 5,1),
-('Poule Rousse', 2.3, '2025-01-11', TRUE, 1, 6,2),
-('Poule Blanche', 2.8, '2025-01-12', TRUE, 1, 6,3);
+INSERT INTO elevage_animal (nom, poids_actuel, date_achat, est_vivant, autoVente, utilisateur_id, type_animal_id, quantite) VALUES
+('Vache Tachetée', 45.5, '2025-01-01', TRUE, FALSE, 1, 1, 1),
+('Vache Brune', 47.0, '2025-01-02', TRUE, TRUE, 1, 1, 5),
+('Cochon Gris', 22.1, '2025-01-03', TRUE, FALSE, 1, 2, 3),
+('Cochon Rose', 24.5, '2025-01-04', TRUE, TRUE, 1, 2, 4),
+('Lapin Beige', 1.8, '2025-01-05', TRUE, FALSE, 1, 3, 1),
+('Lapin Blanc', 2.0, '2025-01-06', TRUE, TRUE, 1, 3, 1),
+('Mouton Blanc', 20.5, '2025-01-07', TRUE, FALSE, 1, 4, 2),
+('Mouton Marron', 18.3, '2025-01-08', TRUE, TRUE, 1, 4, 4),
+('Cheval Noir', 35.2, '2025-01-09', TRUE, FALSE, 1, 5, 1),
+('Cheval Blanc', 37.8, '2025-01-10', TRUE, TRUE, 1, 5, 1),
+('Poule Rousse', 2.3, '2025-01-11', TRUE, FALSE, 1, 6, 2),
+('Poule Blanche', 2.8, '2025-01-12', TRUE, TRUE, 1, 6, 3);
 
 -- Insérer des transactions dans la table elevage_transactionAnimal
 INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) VALUES

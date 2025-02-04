@@ -120,6 +120,106 @@ class venteModel {
     
             return true;
     }
+
+    public function checkAutoVente($animalId) {
+        $sql = "SELECT a.*, t.poids_minimal_vente 
+                FROM elevage_animal a 
+                JOIN elevage_typeAnimal t ON a.type_animal_id = t.id 
+                WHERE a.id = :animal_id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':animal_id' => $animalId]);
+        $animal = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$animal) {
+            return false;
+        }
+        
+        return $animal['poids_actuel'] >= $animal['poids_minimal_vente'];
+    }
+
+    public function checkAutoVenteStatus($animalId) {
+        $sql = "SELECT autoVente 
+                FROM elevage_animal 
+                WHERE id = :animal_id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':animal_id' => $animalId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$result) {
+            return false;
+        }
+        
+        return (bool)$result['autoVente'];
+    }
     
+    public function getAnimalDetails($animalId) {
+        $sql = "SELECT a.*, t.poids_minimal_vente, t.prix_vente_kg 
+                FROM elevage_animal a 
+                JOIN elevage_typeAnimal t ON a.type_animal_id = t.id 
+                WHERE a.id = :animal_id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':animal_id' => $animalId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function venteAnimale($idAnimal, $id_utilisateur, $date, $quantite) {
+            $this->conn->beginTransaction();
+
+            // Vérifier si l'animal est en autovente et a atteint le poids minimal
+            if ($this->checkAutoVente($idAnimal)) {
+                $poidsMin = $this->getPoidsMinAnimal($idAnimal);
+                $prixParKg = $this->getPrixParKgAnimal($idAnimal);
+                $prixAnimal = $poidsMin * $prixParKg;
+            } else {
+                $prixParKg = $this->getPrixParKgAnimal($idAnimal);
+                $poids = $this->getPoidsActuel($idAnimal, $id_utilisateur);
+                $prixAnimal = $poids * $prixParKg;
+            }
+
+            $montantTotal = $prixAnimal * $quantite;
+
+            // Enregistrer la transaction
+            $sql1 = "INSERT INTO elevage_transactionAnimal (type_transaction, montant, date_transaction, utilisateur_id, animal_id, quantite) 
+                     VALUES ('vente', :montant, :date, :utilisateur_id, :animal_id, :quantite)";
+            $stmt1 = $this->conn->prepare($sql1);
+            $stmt1->execute([
+                ':montant' => $montantTotal,
+                ':date' => $date,
+                ':utilisateur_id' => $id_utilisateur,
+                ':animal_id' => $idAnimal,
+                ':quantite' => $quantite
+            ]);
+
+            // Mettre à jour les quantités
+            $this->updateQuantite($idAnimal, $id_utilisateur, $quantite);
+            
+            // Mettre à jour le capital
+            $this->updateCapitalUser($id_utilisateur, $montantTotal);
+
+            $this->conn->commit();
+            return true;
+
+        }
+
+        public function planifierVenteAnimal($animalId, $userId, $datePrevue, $quantite = 1) {
+            try {
+                $sql = "INSERT INTO elevage_vente_planifiee (animal_id, utilisateur_id, date_prevue, quantite) 
+                        VALUES (:animal_id, :user_id, :date_prevue, :quantite)";
+                
+                $stmt = $this->conn->prepare($sql);
+                return $stmt->execute([
+                    ':animal_id' => $animalId,
+                    ':user_id' => $userId,
+                    ':date_prevue' => $datePrevue,
+                    ':quantite' => $quantite
+                ]);
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
 }
+
 ?>

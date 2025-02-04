@@ -245,75 +245,75 @@
         justify-content: center;
         align-items: center;
         z-index: 1000;
-    }
+            }
 
-    .sell-modal-content {
-        background-color: white;
-        border-radius: 12px;
-        width: 400px;
-        padding: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transform: scale(0.7);
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
+            .sell-modal-content {
+                background-color: white;
+                border-radius: 12px;
+                width: 400px;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transform: scale(0.7);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
 
-    .sell-modal-content h2 {
-        color: #2563eb;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-    }
+            .sell-modal-content h2 {
+                color: #2563eb;
+                margin-bottom: 20px;
+                font-size: 1.5rem;
+            }
 
-    .sell-modal-content input {
-        width: 100%;
-        padding: 12px;
-        margin: 15px 0;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-    }
+            .sell-modal-content input {
+                width: 100%;
+                padding: 12px;
+                margin: 15px 0;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            }
 
-    .sell-modal-content input:focus {
-        outline: none;
-        border-color: #2563eb;
-    }
+            .sell-modal-content input:focus {
+                outline: none;
+                border-color: #2563eb;
+            }
 
-    .sell-modal-actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
+            .sell-modal-actions {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
 
-    .sell-modal-btn {
-        flex: 1;
-        padding: 12px;
-        margin: 0 10px;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+            .sell-modal-btn {
+                flex: 1;
+                padding: 12px;
+                margin: 0 10px;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
 
-    .sell-modal-btn-cancel {
-        background-color: #f3f4f6;
-        color: #4b5563;
-    }
+            .sell-modal-btn-cancel {
+                background-color: #f3f4f6;
+                color: #4b5563;
+            }
 
-    .sell-modal-btn-confirm {
-        background-color: #10b981;
-        color: white;
-    }
+            .sell-modal-btn-confirm {
+                background-color: #10b981;
+                color: white;
+            }
 
-    .sell-modal-btn-cancel:hover {
-        background-color: #e5e7eb;
-    }
+            .sell-modal-btn-cancel:hover {
+                background-color: #e5e7eb;
+            }
 
-    .sell-modal-btn-confirm:hover {
-        background-color: #059669;
-    }
+            .sell-modal-btn-confirm:hover {
+                background-color: #059669;
+            }
     </style>
 </head>
 

@@ -25,6 +25,7 @@ $a = new AcheterAnimalController();
 $f = new nourritureController();
 $ac = new AchatController();
 $v = new venteController();
+$p = new venteController();
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -61,6 +62,9 @@ $router->post('/login',[ $userController, 'login' ]);
 $router->post('/signin',[ $userController, 'signin' ]);
 
 $router->get('/AffichageAchat',[ $userController, 'AffichageAchate' ]);
+
+$router->get('/planifier', [$p, 'planifierVente']);
+$router->post('/planifier', [$p, 'planifierVente']);
 
 $router->get('/insertAchat',[ $AchatController, 'AchatAnimaux' ]);
 //$router->get('/users/@id:[0-9]', [ $Api_Example_Controller, 'getUser' ]);
