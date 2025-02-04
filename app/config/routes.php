@@ -7,6 +7,7 @@ use app\controllers\AchatController;
 use app\controllers\AcheterAnimalController;
 use app\controllers\nourritureController;
 use app\controllers\venteController;
+use app\controllers\SoldeController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -25,7 +26,7 @@ $a = new AcheterAnimalController();
 $f = new nourritureController();
 $ac = new AchatController();
 $v = new venteController();
-
+$SoldeController = new SoldeController();
 $router->get('/',function(){
 	Flight::render('Login');
 });
@@ -42,6 +43,18 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 }); 
 
+$router->get('/depot',function(){
+	Flight::render('depot');
+}); 
+
+$router->get('/liste',function(){
+	Flight::render('liste');
+}); 
+
+$router->get('/allDepot',function(){
+	Flight::render('allDepot');
+}); 
+
 $router->get('/updateType',[ $t,'updateType']);
 
 $router->get('/venteAnimal',[ $v, 'venteAnimal']);
@@ -49,6 +62,8 @@ $router->get('/venteAnimal',[ $v, 'venteAnimal']);
 $router->get('/food', [$f, 'showFoodPurchaseForm']);
 
 $router ->get('/admin',[ $t,'getAllType']);
+
+$router->get('/admin2',[ $SoldeController, 'showDepot' ]);
 
 $router ->get('/list',[ $l,'listAnimaux']);
 
@@ -58,10 +73,11 @@ $router ->get('/listeAnimal',[ $a,'getAnimaux']);
 
 $router->post('/login',[ $userController, 'login' ]);
 
+$router->get('/validate',[ $SoldeController, 'valideDepot' ]);
 
 $router->post('/achatNourriture',[ $f, 'achatNourriture' ]);
 
-
+$router->post('/insertDepot',[ $SoldeController , 'insertDepot' ]);
 
 $router->post('/signin',[ $userController, 'signin' ]);
 

@@ -8,6 +8,14 @@ CREATE TABLE elevage_utilisateur (
     capital DECIMAL(10, 2) NOT NULL
 );
 
+CREATE TABLE DEPOTS(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUser INT ,
+    Valeur INT,
+    is_valide BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (idUser) REFERENCES elevage_utilisateur(id)
+);
+
 CREATE TABLE elevage_typeAnimal (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,

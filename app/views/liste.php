@@ -341,6 +341,16 @@
                     <i class="fas fa-shopping-cart"></i>
                     <a href="listeAnimal">Acheter Animal</a>
                 </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="depot">Faire un depot</a>
+                </button>
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="admin2">Voir accepter le depot</a>
+                </button>
+
+
             </div>
         </div>
     </div>
