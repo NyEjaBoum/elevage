@@ -64,9 +64,9 @@
 
         <div class="animal-details">
             <h3>Détails de l'Animal</h3>
-            <p>Nom: <?php echo ($animal['nom']); ?></p>
-            <p>Poids actuel: <?php echo ($animal['poids_actuel']); ?> kg</p>
-            <p>Poids minimal de vente: <?php echo ($animal['poids_minimal_vente']); ?> kg</p>
+            <p>Nom: <?php echo htmlspecialchars($animal['nom']); ?></p>
+            <p>Poids actuel: <?php echo htmlspecialchars($animal['poids_actuel']); ?> kg</p>
+            <p>Poids minimal de vente: <?php echo htmlspecialchars($animal['poids_minimal_vente']); ?> kg</p>
         </div>
 
         <form class="planning-form" method="POST" action="/elevage/planifier">

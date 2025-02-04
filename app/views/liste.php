@@ -347,7 +347,7 @@
                 </button>
                 <button class="dashboard-button">
                     <i class="fas fa-shopping-cart"></i>
-                    <a href="admin2">Voir accepter le depot</a>
+                    <a href="listeVente">Liste Vente Planifier</a>
                 </button>
                 <button class="dashboard-button">
                     <i class="fas fa-shopping-cart"></i>

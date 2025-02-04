@@ -8,6 +8,7 @@ use app\controllers\AcheterAnimalController;
 use app\controllers\nourritureController;
 use app\controllers\venteController;
 use app\controllers\SoldeController;
+use app\controllers\VentePlanifieeController;
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -29,6 +30,7 @@ $v = new venteController();
 $p = new venteController();
 $so = new SoldeController();
 $us = new UserController();
+$li = new VentePlanifieeController();
 
 
 $router->get('/',function(){
@@ -82,6 +84,8 @@ $router ->get('/admin',[ $t,'getAllType']);
 $router->get('/admin2',[ $so, 'showDepot' ]);
 
 $router ->get('/list',[ $l,'listAnimaux']);
+
+$router ->get('/listeVente',[ $li,'afficherVentesPlanifiees']);
 
 $router->post('/achat', [$ac, 'achatAnimal']);
 
