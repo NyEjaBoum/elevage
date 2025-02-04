@@ -216,8 +216,46 @@ class nourritureModel {
         return $resultats;
     }
     
+    public function simulerNourrir($userId, $animalId, $quantite) {
+        // Get animal current data
+        $animal = $this->getAnimalById($animalId);
+        if (!$animal) {
+            return ['error' => 'Animal non trouvé'];
+        }
     
+        // Get available food for animal type
+        $nourritures = $this->getAllNourritureUserForAnimal($userId, $animal->type_animal_id);
+        if (empty($nourritures)) {
+            return ['error' => 'Pas de nourriture disponible'];
+        }
+    
+        // Use first available food
+        $nourriture = $nourritures[0];
+        $stockDisponible = $this->getQuantiteStock($userId, $nourriture['nourriture_id']);
+    
+        if ($stockDisponible < $quantite) {
+            return ['error' => 'Stock insuffisant'];
+        }
+    
+        $poidsInitial = $animal->poids_actuel;
+        $gainPoids = $poidsInitial * ($nourriture['pourcentage_gain_poids'] / 100) * $quantite;
+        $poidsFinal = $poidsInitial + $gainPoids;
+    
+        // Return simulation result without updating database
+        return [
+            'poids_initial' => $poidsInitial,
+            'poids_final' => $poidsFinal,
+            'nourriture_utilisee' => $quantite,
+            'nourriture' => $nourriture['nourriture_nom']
+        ];
+    }
 
+        // Ajouter dans nourritureModel.php:
+        public function getTypeAnimal($typeId) {
+            $stmt = $this->db->prepare("SELECT * FROM elevage_typeAnimal WHERE id = ?");
+            $stmt->execute([$typeId]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
     /*public function simulerAnimal($userId, $idAnimal, $dateSimulation) {
         // Récupérer les informations de l'animal
         $animal = $this->getAnimalById($idAnimal);
