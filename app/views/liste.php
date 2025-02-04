@@ -349,7 +349,10 @@
                     <i class="fas fa-shopping-cart"></i>
                     <a href="admin2">Voir accepter le depot</a>
                 </button>
-
+                <button class="dashboard-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a href="dashboard">Tableau de Bord</a>
+                </button>
 
             </div>
         </div>
@@ -399,6 +402,7 @@
                 +1.2% ce mois
             </div>
         </div>
+        
     </div>
 
     <!-- Table -->

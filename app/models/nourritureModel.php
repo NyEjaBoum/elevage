@@ -165,12 +165,53 @@ class nourritureModel {
     
         return $animaux;
     }
-    
 
-//     public function getFoodPurchaseHistoryByUser($userId) {
-//             $stmt = $this->db->prepare("SELECT * FROM food_purchase_history WHERE utilisateur_id = ?");
-//             $stmt->execute([$userId]);
-//             return $stmt->fetchAll(PDO::FETCH_OBJ);
-// }
+    public function simulerAnimal($userId, $idAnimal, $dateSimulation) {
+        // Récupérer les informations de l'animal
+        $animal = $this->getAnimalById($idAnimal);
+    
+        // Calculer le nombre de jours entre la date actuelle et la date de simulation
+        $dateActuelle = date('Y-m-d');
+        $joursSimulation = (strtotime($dateSimulation) - strtotime($dateActuelle)) / (60 * 60 * 24);
+    
+        // Initialiser les résultats
+        $resultat = [
+            'idAnimal' => $idAnimal,
+            'poids_actuel' => $animal->poids_actuel,
+            'nourriture_consommee' => 0,
+            'statut' => 'En vie'
+        ];
+    
+        // Simuler chaque jour jusqu'à la date de simulation
+        for ($i = 0; $i < $joursSimulation; $i++) {
+            // Vérifier si l'animal est mort
+            if ($animal->date_mort && $animal->date_mort <= $dateSimulation) {
+                $resultat['statut'] = 'Mort';
+                break;
+            }
+    
+            // Vérifier si l'animal est vendu
+            if ($animal->autovente && $animal->poids_actuel >= $animal->poids_minimal_vente) {
+                $resultat['statut'] = 'Vendu';
+                break;
+            }
+    
+            // Nourrir l'animal
+            $quota = $animal->quota_nourriture_journalier;
+            $stockDisponible = $this->getQuantiteStock($userId, $animal->idNourriture);
+    
+            if ($stockDisponible >= $quota) {
+                $this->nourrir($userId, $animal->idNourriture, $idAnimal, $quota);
+                $resultat['nourriture_consommee'] += $quota;
+                $resultat['poids_actuel'] = $animal->poids_actuel;
+            } else {
+                // Pas assez de nourriture, l'animal ne mange pas
+                break;
+            }
+        }
+    
+        return $resultat;
+    }
+    
 }
 ?>
