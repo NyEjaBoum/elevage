@@ -43,6 +43,7 @@ $router->get('/template2',function(){
 	Flight::render('template2');
 }); 
 
+<<<<<<< Updated upstream
 $router->get('/depot',function(){
 	Flight::render('depot');
 }); 
@@ -54,6 +55,11 @@ $router->get('/liste',function(){
 $router->get('/allDepot',function(){
 	Flight::render('allDepot');
 }); 
+=======
+$router->get('/nourrir',function(){
+	Flight::render('nourrirAnimal');
+});
+>>>>>>> Stashed changes
 
 $router->get('/updateType',[ $t,'updateType']);
 
@@ -69,7 +75,9 @@ $router ->get('/list',[ $l,'listAnimaux']);
 
 $router->post('/achat', [$ac, 'achatAnimal']);
 
-$router ->get('/listeAnimal',[ $a,'getAnimaux']);
+$router->get('/listeAnimal',[ $a,'getAnimaux']);
+
+
 
 $router->post('/login',[ $userController, 'login' ]);
 

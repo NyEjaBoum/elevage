@@ -53,6 +53,13 @@ class venteModel {
         return $result['quantite'];
     }
 
+    public function getPourcentageGain($idFood){
+        $sql = "SELECT pourcentage_gain_poids as prc from elevage_nourriture where id = $idFood";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['prc'];
+    }
+
     public function getPoidsActuel($id,$user){
         $sql = "SELECT poids_actuel as poids from elevage_animal where utilisateur_id = $user AND id = $id";
         $stmt = $this->conn->query($sql);

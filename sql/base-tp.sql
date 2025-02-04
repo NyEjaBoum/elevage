@@ -35,6 +35,7 @@ CREATE TABLE elevage_animal (
     utilisateur_id INT,
     type_animal_id INT,
     quantite INT,
+    quota_nourriture_journalier DECIMAL(10,2)
     FOREIGN KEY (utilisateur_id) REFERENCES elevage_utilisateur(id),
     FOREIGN KEY (type_animal_id) REFERENCES elevage_typeAnimal(id)
 );

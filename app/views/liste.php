@@ -405,7 +405,7 @@
     <div class="table-container">
     <form action="venteAnimal" method="GET">
     <div class="table-header">
-        <h2 class="table-title">Liste des Animaux</h2>
+        <h2 class="table-title">Liste de vos Animaux</h2>
     </div>
     <table>
         <thead>
@@ -431,6 +431,9 @@
     </td>
     <td>
         <button type="button" class="action-button">Vendre</button>
+    </td>
+    <td>
+        <button type="button" class="action"><a href="nourrir?id=<?=$listing['id'] ?>">Nourrir</a></button>
     </td>
 </tr>
                 <?php endforeach; ?>

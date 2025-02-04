@@ -25,12 +25,27 @@ class nourritureController {
         ]);
     }
 
+    public function pseudoNourrir() {
+        $userId = $_SESSION['user'];
+        $n = new nourritureModel(Flight::db());
+        $foods = $n->getAllFoods($userId);
+        $animals = $n->getAnimalById($userId);
+        Flight::render('nourriture', [
+            'foods' => $foods,
+            'animals' => $animals
+        ]);
+    }
+
     public function achatNourriture(){
         $idNourriture = $_POST['food_id'];
         $quantite = $_POST['quantite'];
         $n = new nourritureModel(Flight::db());
         $achat = $n->updateStockUtilisateur($_SESSION['user'],$idNourriture,$quantite);
         Flight::redirect('food?success');
+    }
+
+    public function nourrir(){
+
     }
 }
 ?>
