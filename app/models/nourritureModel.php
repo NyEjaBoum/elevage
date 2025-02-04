@@ -112,7 +112,7 @@ class nourritureModel {
     
 
     public function updatePoidsAnimal($userId,$idAnimal,$newPoids){
-        $stmt = $this->db->prepare("UPDATE elevage_animal SET poids_actuel = ? WHERE idAnimal =? AND utilisateur_id = ?");
+        $stmt = $this->db->prepare("UPDATE elevage_animal SET poids_actuel = ? WHERE id =? AND utilisateur_id = ?");
         $stmt->execute([$newPoids,$idAnimal,$userId]);
     }
 
@@ -139,56 +139,88 @@ class nourritureModel {
 
 
     public function nourrirAnimauxAutomatiquement($userId) {
-        // Récupérer tous les animaux de l'utilisateur
         $animaux = $this->getAnimalsByUser($userId);
     
-        // Trier les animaux par priorité (proches de la vente en premier)
         $animaux = $this->trierAnimauxParPriorite($animaux);
     
         foreach ($animaux as $animal) {
+            echo $animal['idAnimal'];
             $quota = $animal->quota_nourriture_journalier;
             $idNourriture = $animal->idNourriture;
     
-            // Récupérer le stock de la nourriture spécifique à cet animal
             $stockDisponible = $this->getQuantiteStock($userId, $idNourriture);
     
-            // Vérifier si le stock est suffisant pour nourrir cet animal
             if ($stockDisponible >= $quota) {
-                // Nourrir l'animal
                 $this->nourrir($userId, $idNourriture, $animal->idAnimal, $quota);
             } else {
-                // Pas assez de nourriture pour nourrir cet animal
-                // Passer à l'animal suivant
                 continue;
             }
         }
+
+        echo "🐄 Nourrissage : ID {$animal->id} | Poids Actuel: {$animal->poids_actuel}";
+
     }
     
-    private function trierAnimauxParPriorite($animaux) {
-        $v = new venteModel(); // Assurez-vous que cette classe est correctement initialisée
+    function trierAnimauxParPriorite() {
+        $venteModel = new venteModel(Flight::db());
+        $animaux = $venteModel->getAllAnimaux();
+        
+        echo "Animaux avant tri :\n";
+        foreach ($animaux as $a) {
+            echo "ID: {$a->id}, Poids Actuel: {$a->poids_actuel}, Prix: {$a->prix}, Priorité: {$a->priorite}\n";
+        }
     
-        usort($animaux, function($a, $b) use ($v) {
-            // Calculer la distance au poids minimal de vente pour chaque animal
-            $distanceA = abs($a->poids_actuel - $v->getPoidsMinAnimal($a->type_animal_id));
-            $distanceB = abs($b->poids_actuel - $v->getPoidsMinAnimal($b->type_animal_id));
-    
-            // Prioriser les animaux les plus proches du poids de vente
-            return $distanceA <=> $distanceB;
+        // Trier les animaux
+        usort($animaux, function ($a, $b) {
+            return $b->priorite - $a->priorite;
         });
+    
+        echo "\nAnimaux après tri :\n";
+        foreach ($animaux as $a) {
+            echo "ID: {$a->id}, Poids Actuel: {$a->poids_actuel}, Prix: {$a->prix}, Priorité: {$a->priorite}\n";
+        }
     
         return $animaux;
     }
 
     public function simulerAnimal($userId, $idAnimal, $dateSimulation) {
-        // Récupérer les informations de l'animal
-        $animal = $this->getAnimalById($idAnimal);
+        $dateActuelle = date('Y-m-d');
+        $joursSimulation = (strtotime($dateSimulation) - strtotime($dateActuelle)) / (60 * 60 * 24);
     
-        if (!$animal) {
-            return [
-                'idAnimal' => $idAnimal,
-                'erreur' => 'Animal non trouvé'
+        // Modèle pour récupérer les données
+        $v = new venteModel(Flight::db());
+        $type = $v->getType($idAnimal);
+        $allKaly = $this->getAllNourritureUserForAnimal($userId, $type);
+    
+        if (empty($allKaly)) {
+            return ["error" => "Aucune nourriture disponible pour cet animal."];
+        }
+    
+        $idNourriture = $allKaly[0]['nourriture_id'];
+        $quantite = 1; // Quantité fixe par jour
+    
+        $resultats = [];
+    
+        for ($i = 0; $i < $joursSimulation; $i++) {
+            $this->nourrir($userId, $idNourriture, $idAnimal, $quantite);
+    
+            // Récupérer le poids après chaque jour de simulation
+            $poidsActuel = $v->getPoidsActuel($idAnimal, $userId);
+            $resultats[] = [
+                "jour" => $i + 1,
+                "date" => date('Y-m-d', strtotime("+$i day", strtotime($dateActuelle))),
+                "poids" => $poidsActuel
             ];
         }
+    
+        return $resultats;
+    }
+    
+    
+
+    /*public function simulerAnimal($userId, $idAnimal, $dateSimulation) {
+        // Récupérer les informations de l'animal
+        $animal = $this->getAnimalById($idAnimal);
     
         // Récupérer le type d'animal pour avoir les informations de vente
         $v = new venteModel(Flight::db());
@@ -255,7 +287,7 @@ class nourritureModel {
         }
     
         return $resultat;
-    }
+    }*/
     
 }
 ?>
