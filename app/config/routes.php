@@ -44,6 +44,7 @@ $router->get('/template2',function(){
 }); 
 
 <<<<<<< Updated upstream
+
 $router->get('/depot',function(){
 	Flight::render('depot');
 }); 
@@ -59,7 +60,10 @@ $router->get('/allDepot',function(){
 $router->get('/nourrir',function(){
 	Flight::render('nourrirAnimal');
 });
->>>>>>> Stashed changes
+
+$router->get('/nourrir',function(){
+	Flight::render('nourrirAnimal');
+});
 
 $router->get('/updateType',[ $t,'updateType']);
 
