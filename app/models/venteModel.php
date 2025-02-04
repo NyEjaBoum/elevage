@@ -88,10 +88,7 @@ class venteModel {
     
                 $currentId = $idAnimal;
                 $currentQuantite = $quantite;
-                    echo $currentId;
-                    echo $currentQuantite;
-
-    
+                    
                 $prixAnimal = $this->getPrixAnimal($currentId);
 
     
