@@ -24,7 +24,7 @@ $AchatController = new AchatController();
 $a = new AcheterAnimalController();
 $f = new nourritureController();
 $ac = new AchatController();
-
+$v = new venteController();
 
 $router->get('/',function(){
 	Flight::render('Login');
