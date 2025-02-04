@@ -58,6 +58,11 @@ $router ->get('/listeAnimal',[ $a,'getAnimaux']);
 
 $router->post('/login',[ $userController, 'login' ]);
 
+
+$router->post('/achatNourriture',[ $f, 'achatNourriture' ]);
+
+
+
 $router->post('/signin',[ $userController, 'signin' ]);
 
 $router->get('/AffichageAchat',[ $userController, 'AffichageAchate' ]);

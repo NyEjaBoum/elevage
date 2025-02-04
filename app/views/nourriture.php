@@ -173,7 +173,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <form method="POST" action="" class="food-purchase-form">
+                        <form method="POST" action="achatNourriture" class="food-purchase-form">
                             <input type="hidden" name="action" value="purchase_food">
                             <td>
                                 <select name="animal_id" id="animal_id" required>
@@ -196,7 +196,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="number" name="quantity" id="quantity" step="0.1" min="0" required>
+                                <input type="number" name="quantite" id="quantity" step="0.1" min="0">
                             </td>
                             <td>
                                 <button type="submit" class="btn">Acheter</button>

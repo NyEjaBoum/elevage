@@ -11,6 +11,13 @@ class venteModel {
         $this->conn = $db;
     }
 
+    public function getType($id){
+        $sql = "SELECT type_animal_id as types FROM ELEVAGE_ANIMAL WHERE id = $id";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['types'];
+    }
+
     public function getPoidsMinAnimal($id){
         $sql = "SELECT poids_minimal_vente as poids FROM ELEVAGE_TYPEANIMAL WHERE id = $id";
         $stmt = $this->conn->query($sql);
@@ -33,8 +40,9 @@ class venteModel {
     }
 
     public function getPrixAnimal($idAnimal) {
-        $poidsMin = $this->getPoidsMinAnimal($idAnimal);
-        $prixParKg = $this->getPrixParKgAnimal($idAnimal); // Appel correct de la méthode
+        $id = $this->getType($idAnimal);
+        $poidsMin = $this->getPoidsMinAnimal($id);
+        $prixParKg = $this->getPrixParKgAnimal($id); // Appel correct de la méthode
         return $poidsMin * $prixParKg;
     }
 
@@ -97,9 +105,10 @@ class venteModel {
                 $currentQuantite = $quantite;
 
                 $prixAnimal = $this->getPrixAnimal($currentId);
+                $id = $this->getType($idAnimal);
 
-                $poidMin = $this->getPoidsMinAnimal($idAnimal);
-                $poidMax = $this->getPoidsMaxAnimal($idAnimal);
+                $poidMin = $this->getPoidsMinAnimal($id);
+                $poidMax = $this->getPoidsMaxAnimal($id);
     
                 $poids = $this->getPoidsActuel($currentId, $id_utilisateur);
 

@@ -17,18 +17,20 @@ class nourritureController {
     public function showFoodPurchaseForm() {
         $userId = $_SESSION['user'];
         $n = new nourritureModel(Flight::db());
-        $foods = $n->getFoodsByUser($userId);
+        $foods = $n->getAllFoods($userId);
         $animals = $n->getAnimalsByUser($userId);
-        // $purchaseHistory = $n->getFoodPurchaseHistoryByUser($userId);
-
-        // $remainingCapital = isset($_SESSION['farmManager']) ? $_SESSION['farmManager']->getRemainingCapital() : 0;
-
         Flight::render('nourriture', [
             'foods' => $foods,
-            'animals' => $animals,
-            // 'purchaseHistory' => $purchaseHistory,
-            // 'remainingCapital' => $remainingCapital
+            'animals' => $animals
         ]);
+    }
+
+    public function achatNourriture(){
+        $idNourriture = $_POST['food_id'];
+        $quantite = $_POST['quantite'];
+        $n = new nourritureModel(Flight::db());
+        $achat = $n->updateStockUtilisateur($_SESSION['user'],$idNourriture,$quantite);
+        Flight::redirect('food?success');
     }
 }
 ?>
