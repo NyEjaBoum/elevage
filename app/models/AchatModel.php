@@ -26,6 +26,7 @@ class AchatModel
         $prix,
         $quantite
     ) {
+        try {
             $this->db->beginTransaction();
 
             // 1. Mettre à jour le propriétaire de l'animal
@@ -69,5 +70,9 @@ VALUES ('vente', :montant, :date_transaction, :utilisateur_id, :animal_id, :quan
 
             $this->db->commit();
             return true;
+        } catch (PDOException $e) {
+            $this->db->rollBack();
+            throw $e;
         }
+    }
 }
