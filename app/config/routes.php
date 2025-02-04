@@ -27,6 +27,9 @@ $f = new nourritureController();
 $ac = new AchatController();
 $v = new venteController();
 $p = new venteController();
+$so = new SoldeController();
+$us = new UserController();
+
 
 $router->get('/',function(){
 	Flight::render('Login');
@@ -76,7 +79,7 @@ $router->get('/food', [$f, 'showFoodPurchaseForm']);
 
 $router ->get('/admin',[ $t,'getAllType']);
 
-$router->get('/admin2',[ $SoldeController, 'showDepot' ]);
+$router->get('/admin2',[ $so, 'showDepot' ]);
 
 $router ->get('/list',[ $l,'listAnimaux']);
 
@@ -86,17 +89,17 @@ $router->get('/listeAnimal',[ $a,'getAnimaux']);
 
 
 
-$router->post('/login',[ $userController, 'login' ]);
+$router->post('/login',[ $us, 'login' ]);
 
-$router->get('/validate',[ $SoldeController, 'valideDepot' ]);
+$router->get('/validate',[ $so, 'valideDepot' ]);
 
 $router->post('/achatNourriture',[ $f, 'achatNourriture' ]);
 
-$router->post('/insertDepot',[ $SoldeController , 'insertDepot' ]);
+$router->post('/insertDepot',[ $so , 'insertDepot' ]);
 
-$router->post('/signin',[ $userController, 'signin' ]);
+$router->post('/signin',[ $us, 'signin' ]);
 
-$router->get('/AffichageAchat',[ $userController, 'AffichageAchate' ]);
+$router->get('/AffichageAchat',[ $us, 'AffichageAchate' ]);
 
 $router->get('/planifier', [$p, 'planifierVente']);
 $router->post('/planifier', [$p, 'planifierVente']);
