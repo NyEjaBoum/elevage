@@ -60,9 +60,22 @@ class nourritureModel {
     }
 
     public function getAnimalsByUser($userId) {
-            $stmt = $this->db->prepare("SELECT * FROM elevage_animal WHERE utilisateur_id = ?");
-            $stmt->execute([$userId]);
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        $stmt = $this->db->prepare("
+            SELECT 
+                a.id,
+                a.nom,
+                a.poids_actuel,
+                a.date_achat,
+                a.est_vivant,
+                a.utilisateur_id,
+                a.type_animal_id,
+                a.quantite,
+                a.quota_nourriture_journalier
+            FROM elevage_animal a 
+            WHERE a.utilisateur_id = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getQuantiteStock($userId, $idFood) {
@@ -104,10 +117,10 @@ class nourritureModel {
     }
 
     public function getAnimalById($idAnimal){
-        $sql = "SELECT * FROM ELEVAGE_ANIMAL WHERE ID = $idAnimal";
+        $sql = "SELECT * FROM elevage_animal WHERE id = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$utilisateur_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$idAnimal]);
+        return $stmt->fetch(PDO::FETCH_OBJ); // Changé en FETCH_OBJ au lieu de FETCH_ASSOC
     }
 
     public function nourrir($userId, $idNourriture, $idAnimal, $quantite) {
@@ -170,6 +183,17 @@ class nourritureModel {
         // Récupérer les informations de l'animal
         $animal = $this->getAnimalById($idAnimal);
     
+        if (!$animal) {
+            return [
+                'idAnimal' => $idAnimal,
+                'erreur' => 'Animal non trouvé'
+            ];
+        }
+    
+        // Récupérer le type d'animal pour avoir les informations de vente
+        $v = new venteModel(Flight::db());
+        $poidsMinimalVente = $v->getPoidsMinAnimal($animal->type_animal_id);
+    
         // Calculer le nombre de jours entre la date actuelle et la date de simulation
         $dateActuelle = date('Y-m-d');
         $joursSimulation = (strtotime($dateSimulation) - strtotime($dateActuelle)) / (60 * 60 * 24);
@@ -177,35 +201,55 @@ class nourritureModel {
         // Initialiser les résultats
         $resultat = [
             'idAnimal' => $idAnimal,
+            'nom' => $animal->nom,
             'poids_actuel' => $animal->poids_actuel,
             'nourriture_consommee' => 0,
-            'statut' => 'En vie'
+            'statut' => $animal->est_vivant ? 'En vie' : 'Mort'
         ];
     
         // Simuler chaque jour jusqu'à la date de simulation
         for ($i = 0; $i < $joursSimulation; $i++) {
             // Vérifier si l'animal est mort
-            if ($animal->date_mort && $animal->date_mort <= $dateSimulation) {
+            if (!$animal->est_vivant) {
                 $resultat['statut'] = 'Mort';
                 break;
             }
     
-            // Vérifier si l'animal est vendu
-            if ($animal->autovente && $animal->poids_actuel >= $animal->poids_minimal_vente) {
-                $resultat['statut'] = 'Vendu';
+            // Vérifier si l'animal est vendable
+            if ($animal->poids_actuel >= $poidsMinimalVente) {
+                $resultat['statut'] = 'Prêt à vendre';
                 break;
             }
     
-            // Nourrir l'animal
+            // Récupérer les nourritures disponibles pour ce type d'animal
+            $nourritures = $this->getAllNourritureUserForAnimal($userId, $animal->type_animal_id);
+    
+            if (empty($nourritures)) {
+                $resultat['statut'] = 'Pas de nourriture disponible';
+                break;
+            }
+    
+            // Prendre la première nourriture disponible
+            $nourriture = $nourritures[0];
+    
+            // Vérifier le quota et le stock
             $quota = $animal->quota_nourriture_journalier;
-            $stockDisponible = $this->getQuantiteStock($userId, $animal->idNourriture);
+            $stockDisponible = $this->getQuantiteStock($userId, $nourriture['nourriture_id']);
     
             if ($stockDisponible >= $quota) {
-                $this->nourrir($userId, $animal->idNourriture, $idAnimal, $quota);
+                // Simuler le nourrissage
+                $poidsGagne = ($animal->poids_actuel * ($nourriture['pourcentage_gain_poids'] / 100) * $quota);
+                $animal->poids_actuel += $poidsGagne;
+    
+                // Mettre à jour les résultats
                 $resultat['nourriture_consommee'] += $quota;
                 $resultat['poids_actuel'] = $animal->poids_actuel;
+    
+                // Réduire le stock de nourriture
+                $this->updateStockUtilisateur($userId, $nourriture['nourriture_id'], -$quota);
             } else {
-                // Pas assez de nourriture, l'animal ne mange pas
+                // Pas assez de nourriture
+                $resultat['statut'] = 'Stock insuffisant';
                 break;
             }
         }

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\nourritureModel;
+use app\models\venteModel;
 use Flight;
 use PDO;
 
@@ -44,8 +45,24 @@ class nourritureController {
         Flight::redirect('food?success');
     }
 
-    public function nourrir(){
-
+    public function simulation() {
+        $date = $_GET['date']; // Utiliser POST au lieu de GET pour la sécurité
+        $n = new nourritureModel(Flight::db());
+    
+        $animaux = $n->getAnimalsByUser($_SESSION['user']);
+        $resultats = [];
+    
+        foreach ($animaux as $animal) {
+            $resultatAnimal = $n->simulerAnimal($_SESSION['user'], $animal->id, $date);
+            $resultatAnimal['nom'] = $animal->nom; // Ajouter le nom de l'animal
+            $resultats[] = $resultatAnimal;
+        }
+    
+        // Afficher les résultats dans la vue
+        Flight::render('TableauDeBord', [
+            'resultats' => $resultats,
+            'date_simulation' => $date
+        ]);
     }
 }
 ?>

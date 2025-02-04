@@ -39,6 +39,10 @@ $router->get('/dashboard',function(){
 	Flight::render('TableauDeBord');
 });
 
+
+$router->get('/simulation',[ $f,'simulation']);
+
+
 $router->get('/template1',function(){
 	Flight::render('template1');
 });
