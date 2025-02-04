@@ -9,6 +9,8 @@ use app\controllers\nourritureController;
 use app\controllers\venteController;
 use app\controllers\SoldeController;
 use app\controllers\VentePlanifieeController;
+use app\controllers\AutoVenteController;
+
 use flight\Engine;
 use flight\net\Router;
 //use Flight;
@@ -31,6 +33,8 @@ $p = new venteController();
 $so = new SoldeController();
 $us = new UserController();
 $li = new VentePlanifieeController();
+$av = new AutoVenteController();
+
 
 
 $router->get('/',function(){
@@ -108,6 +112,8 @@ $router->post('/insertDepot',[ $so , 'insertDepot' ]);
 $router->post('/signin',[ $us, 'signin' ]);
 
 $router->get('/AffichageAchat',[ $us, 'AffichageAchate' ]);
+
+$router->post('/updateAutoVente', [$av, 'updateAutoVente']);
 
 $router->get('/planifier', [$p, 'planifierVente']);
 $router->post('/planifier', [$p, 'planifierVente']);

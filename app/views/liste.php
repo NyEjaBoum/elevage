@@ -19,6 +19,19 @@
             min-height: 100vh;
         }
 
+        .action.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .action {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         /* Dashboard Header */
         .dashboard {
             background-color: #ffffff;
@@ -237,96 +250,96 @@
         }
 
         .sell-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-            }
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-            .sell-modal-content {
-                background-color: white;
-                border-radius: 12px;
-                width: 400px;
-                padding: 30px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                transform: scale(0.7);
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
+        .sell-modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 400px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
 
-            .sell-modal-content h2 {
-                color: #2563eb;
-                margin-bottom: 20px;
-                font-size: 1.5rem;
-            }
+        .sell-modal-content h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
 
-            .sell-modal-content input {
-                width: 100%;
-                padding: 12px;
-                margin: 15px 0;
-                border: 2px solid #e5e7eb;
-                border-radius: 8px;
-                font-size: 1rem;
-                transition: border-color 0.3s ease;
-            }
+        .sell-modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
 
-            .sell-modal-content input:focus {
-                outline: none;
-                border-color: #2563eb;
-            }
+        .sell-modal-content input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
 
-            .sell-modal-actions {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
+        .sell-modal-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
 
-            .sell-modal-btn {
-                flex: 1;
-                padding: 12px;
-                margin: 0 10px;
-                border: none;
-                border-radius: 8px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
+        .sell-modal-btn {
+            flex: 1;
+            padding: 12px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-            .sell-modal-btn-cancel {
-                background-color: #f3f4f6;
-                color: #4b5563;
-            }
+        .sell-modal-btn-cancel {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
 
-            .sell-modal-btn-confirm {
-                background-color: #10b981;
-                color: white;
-            }
+        .sell-modal-btn-confirm {
+            background-color: #10b981;
+            color: white;
+        }
 
-            .sell-modal-btn-cancel:hover {
-                background-color: #e5e7eb;
-            }
+        .sell-modal-btn-cancel:hover {
+            background-color: #e5e7eb;
+        }
 
-            .sell-modal-btn-confirm:hover {
-                background-color: #059669;
-            }
+        .sell-modal-btn-confirm:hover {
+            background-color: #059669;
+        }
     </style>
 </head>
 
 <body>
-    
+
     <!-- Dashboard -->
     <div class="dashboard">
         <div class="dashboard-content">
             <div class="logo">
                 <i class="fas fa-paw"></i>
-                Élevage <?php echo htmlspecialchars($_SESSION['user']); ?>
+                Élevage <?php echo ($_SESSION['user']); ?>
             </div>
             <div class="user-menu">
                 <button class="dashboard-button">
@@ -358,22 +371,22 @@
         </div>
     </div>
 
-<!-- Messages de succès et d'erreur -->
-<div class="alert-container">
-    <?php if (isset($_GET['success'])): ?>
-        <div class="alert alert-success">
-            <i class="fas fa-check-circle"></i>
-            La vente a été effectuée avec succès !
-        </div>
-    <?php endif; ?>
+    <!-- Messages de succès et d'erreur -->
+    <div class="alert-container">
+        <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>
+                La vente a été effectuée avec succès !
+            </div>
+        <?php endif; ?>
 
-    <?php if (isset($_GET['error'])): ?>
-        <div class="alert alert-error">
-            <i class="fas fa-exclamation-circle"></i>
-            Une erreur s'est produite lors de la vente. Veuillez réessayer.
-        </div>
-    <?php endif; ?>
-</div>
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i>
+                Une erreur s'est produite lors de la vente. Veuillez réessayer.
+            </div>
+        <?php endif; ?>
+    </div>
 
     <!-- Stats Cards -->
     <div class="stats-container">
@@ -402,70 +415,78 @@
                 +1.2% ce mois
             </div>
         </div>
-        
+
     </div>
 
     <!-- Table -->
     <div class="table-container">
-    <form action="venteAnimal" method="GET">
-    <div class="table-header">
-        <h2 class="table-title">Liste de vos Animaux</h2>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Poids Actuel</th>
-                <th>Date d'Achat</th>
-                <th>Quantité</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($listings)): ?>
-                <?php foreach ($listings as $listing): ?>
+        <form action="venteAnimal" method="GET">
+            <div class="table-header">
+                <h2 class="table-title">Liste de vos Animaux</h2>
+            </div>
+            <table>
+                <thead>
                     <tr>
-    <input type="hidden" name="id" value="<?= $listing['id'] ?>">
-    <td><?php echo htmlspecialchars($listing['nom']); ?></td>
-    <td><?php echo htmlspecialchars($listing['poids_actuel']); ?></td>
-    <td><?php echo htmlspecialchars($listing['date_achat']); ?></td>
-    <td>
-        <input type="hidden" name="quantite" value="<?= $listing['quantite'] ?>">
-        <?= $listing['quantite'] ?> <!-- Afficher la quantité -->
-    </td>
-    <td>
-        <button type="button" class="action-button">Vendre</button>
-    </td>
-    <td>
-        <button type="button" class="action"><a href="nourrir?id=<?=$listing['id'] ?>">Nourrir</a></button>
-    </td>
-</tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="5" class="no-listings">Aucun animal disponible</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</form>
-</div>
-<div id="sellModal" class="sell-modal">
-    <div class="sell-modal-content">
-        <h2>Confirmer la Vente</h2>
-        <p>Sélectionnez la quantité à vendre</p>
-        <input 
-            type="number" 
-            id="sellQuantityInput" 
-            min="1" 
-            placeholder="Quantité"
-        >
-        <div class="sell-modal-actions">
-            <button class="sell-modal-btn sell-modal-btn-cancel" id="cancelSell">Annuler</button>
-            <button class="sell-modal-btn sell-modal-btn-confirm" id="confirmSell">Vendre</button>
+                        <th>Nom</th>
+                        <th>Poids Actuel</th>
+                        <th>Date d'Achat</th>
+                        <th>Quantité</th>
+                        <th>Action</th>
+                        <th>Action AutoVente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($listings)): ?>
+                        <?php foreach ($listings as $listing): ?>
+                            <tr>
+                                <input type="hidden" name="id" value="<?= $listing['id'] ?>">
+                                <td><?php echo ($listing['nom']); ?></td>
+                                <td><?php echo ($listing['poids_actuel']); ?></td>
+                                <td><?php echo ($listing['date_achat']); ?></td>
+                                <td>
+                                    <input type="hidden" name="quantite" value="<?= $listing['quantite'] ?>">
+                                    <?= $listing['quantite'] ?> <!-- Afficher la quantité -->
+                                </td>
+                                <td>
+                                    <button type="button" class="action-button">Vendre</button>
+                                </td>
+                                <td>
+                                    <form method="POST" action="/elevage/updateAutoVente">
+                                        <input type="hidden" name="animal_id" value="<?php echo $listing['id']; ?>">
+                                        <button type="submit" name="autoVente" value="1" class="action <?php echo $listing['autoVente'] ? 'active' : ''; ?>">
+                                            TRUE
+                                        </button>
+                                        <button type="submit" name="autoVente" value="0" class="action <?php echo !$listing['autoVente'] ? 'active' : ''; ?>">
+                                            FALSE
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" class="no-listings">Aucun animal disponible</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="sellModal" class="sell-modal">
+        <div class="sell-modal-content">
+            <h2>Confirmer la Vente</h2>
+            <p>Sélectionnez la quantité à vendre</p>
+            <input
+                type="number"
+                id="sellQuantityInput"
+                min="1"
+                placeholder="Quantité">
+            <div class="sell-modal-actions">
+                <button class="sell-modal-btn sell-modal-btn-cancel" id="cancelSell">Annuler</button>
+                <button class="sell-modal-btn sell-modal-btn-confirm" id="confirmSell">Vendre</button>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
@@ -486,70 +507,70 @@
     });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sellModal = document.getElementById('sellModal');
-    const sellQuantityInput = document.getElementById('sellQuantityInput');
-    const cancelSellBtn = document.getElementById('cancelSell');
-    const confirmSellBtn = document.getElementById('confirmSell');
+    document.addEventListener('DOMContentLoaded', function() {
+        const sellModal = document.getElementById('sellModal');
+        const sellQuantityInput = document.getElementById('sellQuantityInput');
+        const cancelSellBtn = document.getElementById('cancelSell');
+        const confirmSellBtn = document.getElementById('confirmSell');
 
-    let currentAnimalId = null;
-    let maxQuantite = 0;
+        let currentAnimalId = null;
+        let maxQuantite = 0;
 
-    // Fonction pour ouvrir le modal
-    function openSellModal(animalId, max) {
-        currentAnimalId = animalId;
-        maxQuantite = max;
-        sellQuantityInput.max = max;
-        sellQuantityInput.value = 1; // Valeur par défaut
-        
-        sellModal.style.display = 'flex';
-        setTimeout(() => {
-            sellModal.querySelector('.sell-modal-content').style.transform = 'scale(1)';
-            sellModal.querySelector('.sell-modal-content').style.opacity = '1';
-        }, 50);
-    }
+        // Fonction pour ouvrir le modal
+        function openSellModal(animalId, max) {
+            currentAnimalId = animalId;
+            maxQuantite = max;
+            sellQuantityInput.max = max;
+            sellQuantityInput.value = 1; // Valeur par défaut
 
-    // Fonction pour fermer le modal
-    function closeSellModal() {
-        const modalContent = sellModal.querySelector('.sell-modal-content');
-        modalContent.style.transform = 'scale(0.7)';
-        modalContent.style.opacity = '0';
-        setTimeout(() => {
-            sellModal.style.display = 'none';
-        }, 300);
-    }
+            sellModal.style.display = 'flex';
+            setTimeout(() => {
+                sellModal.querySelector('.sell-modal-content').style.transform = 'scale(1)';
+                sellModal.querySelector('.sell-modal-content').style.opacity = '1';
+            }, 50);
+        }
 
-    // Événements pour chaque bouton "Vendre"
-    document.querySelectorAll('.action-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const tr = this.closest('tr');
-            const animalId = tr.querySelector('input[name="id"]').value;
-            const maxQuantite = tr.querySelector('input[name="quantite"]').value;
-            
-            openSellModal(animalId, parseInt(maxQuantite));
+        // Fonction pour fermer le modal
+        function closeSellModal() {
+            const modalContent = sellModal.querySelector('.sell-modal-content');
+            modalContent.style.transform = 'scale(0.7)';
+            modalContent.style.opacity = '0';
+            setTimeout(() => {
+                sellModal.style.display = 'none';
+            }, 300);
+        }
+
+        // Événements pour chaque bouton "Vendre"
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tr = this.closest('tr');
+                const animalId = tr.querySelector('input[name="id"]').value;
+                const maxQuantite = tr.querySelector('input[name="quantite"]').value;
+
+                openSellModal(animalId, parseInt(maxQuantite));
+            });
+        });
+
+        // Bouton Annuler
+        cancelSellBtn.addEventListener('click', closeSellModal);
+
+        // Bouton Confirmer
+        confirmSellBtn.addEventListener('click', function() {
+            const quantite = parseInt(sellQuantityInput.value);
+
+            if (quantite > 0 && quantite <= maxQuantite) {
+                window.location.href = `venteAnimal?id=${currentAnimalId}&quantite=${quantite}`;
+            } else {
+                alert(`Veuillez entrer une quantité entre 1 et ${maxQuantite}`);
+            }
+        });
+
+        // Fermer le modal si clic en dehors
+        sellModal.addEventListener('click', function(e) {
+            if (e.target === sellModal) {
+                closeSellModal();
+            }
         });
     });
-
-    // Bouton Annuler
-    cancelSellBtn.addEventListener('click', closeSellModal);
-
-    // Bouton Confirmer
-    confirmSellBtn.addEventListener('click', function() {
-        const quantite = parseInt(sellQuantityInput.value);
-        
-        if (quantite > 0 && quantite <= maxQuantite) {
-            window.location.href = `venteAnimal?id=${currentAnimalId}&quantite=${quantite}`;
-        } else {
-            alert(`Veuillez entrer une quantité entre 1 et ${maxQuantite}`);
-        }
-    });
-
-    // Fermer le modal si clic en dehors
-    sellModal.addEventListener('click', function(e) {
-        if (e.target === sellModal) {
-            closeSellModal();
-        }
-    });
-});
 </script>
