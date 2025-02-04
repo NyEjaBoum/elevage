@@ -18,6 +18,13 @@ class venteModel {
         return $result['poids'];
     }
 
+    public function getPoidsMaxAnimal($id){
+        $sql = "SELECT poids_maximal as poids FROM ELEVAGE_TYPEANIMAL WHERE id = $id";
+        $stmt = $this->conn->query($sql);
+        $result = $stmt->fetch();
+        return $result['poids'];
+    }
+
     public function getPrixParKgAnimal($id){
         $sql = "SELECT prix_vente_kg as prix FROM ELEVAGE_TYPEANIMAL WHERE ID = $id";
         $stmt = $this->conn->query($sql);
@@ -88,12 +95,17 @@ class venteModel {
     
                 $currentId = $idAnimal;
                 $currentQuantite = $quantite;
-                    
+
                 $prixAnimal = $this->getPrixAnimal($currentId);
 
+                $poidMin = $this->getPoidsMinAnimal($idAnimal);
+                $poidMax = $this->getPoidsMaxAnimal($idAnimal);
     
                 $poids = $this->getPoidsActuel($currentId, $id_utilisateur);
 
+                if($poids>=$poidMax || $poids<=$poidMin){
+                    return false;
+                }
     
                 $montantTotal = $prixAnimal * $currentQuantite;
     

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Élevage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/successError.css">
+
     <!-- Ajoutez le CSS ci-dessus ici -->
     <style>
         body {
@@ -318,6 +320,7 @@
 </head>
 
 <body>
+    
     <!-- Dashboard -->
     <div class="dashboard">
         <div class="dashboard-content">
@@ -342,8 +345,26 @@
         </div>
     </div>
 
+<!-- Messages de succès et d'erreur -->
+<div class="alert-container">
+    <?php if (isset($_GET['success'])): ?>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i>
+            La vente a été effectuée avec succès !
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+        <div class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i>
+            Une erreur s'est produite lors de la vente. Veuillez réessayer.
+        </div>
+    <?php endif; ?>
+</div>
+
     <!-- Stats Cards -->
     <div class="stats-container">
+
         <div class="stat-card">
             <div class="stat-title">Total Animaux</div>
             <div class="stat-value">12</div>
@@ -431,7 +452,22 @@
 </body>
 
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
 
+        alerts.forEach(alert => {
+            // Fermer le message après 5 secondes
+            setTimeout(() => {
+                alert.classList.add('hide');
+                // Supprimer l'élément du DOM après l'animation
+                alert.addEventListener('animationend', () => {
+                    alert.remove();
+                });
+            }, 5000); // 5000 ms = 5 secondes
+        });
+    });
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sellModal = document.getElementById('sellModal');
