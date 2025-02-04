@@ -432,6 +432,7 @@
                         <th>Date d'Achat</th>
                         <th>Quantité</th>
                         <th>Action</th>
+                        <th>Action AutoVente</th>
                     </tr>
                 </thead>
                 <tbody>
